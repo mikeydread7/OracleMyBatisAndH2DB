@@ -33,14 +33,12 @@ public class UserRestController {
 	@RequestMapping(value = "/findUser/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<?> getUser(@PathVariable Integer userId) {
 		LOG.debug("findUser: {}", userId);
-		System.out.println("Success!!! h2db memory implementation.................");
 		return new ResponseEntity<>(userService.selectUserById(userId), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/findAllUser", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<?> getAllUser() {
 		LOG.debug("findAllUser:");
-		System.out.println("Success!!! h2db memory implementation.................");
 		return new ResponseEntity<>(userService.selectAllUsers(), HttpStatus.OK);
 	}
 
