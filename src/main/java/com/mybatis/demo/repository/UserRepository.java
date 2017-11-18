@@ -9,7 +9,7 @@ import com.mybatis.demo.mapper.UserMapper;
 import com.mybatis.demo.model.User;
 
 @Repository
-public class UserDao {
+public class UserRepository {
 
 	@Autowired
 	private UserMapper userMapper;

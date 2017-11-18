@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mybatis.demo.model.User;
-import com.mybatis.demo.repository.UserDao;
+import com.mybatis.demo.repository.UserRepository;
 
 @Service
 public class UserService {
 
 	@Autowired
-	private UserDao userDao;
+	private UserRepository userDao;
 
 	public User selectUserById(int userId) {
 
