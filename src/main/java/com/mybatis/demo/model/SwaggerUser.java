@@ -2,8 +2,7 @@ package com.mybatis.demo.model;
 
 import java.sql.Date;
 
-public class User {
-	private Integer userId;
+public class SwaggerUser {
 	private String userName;
 	private String eyeColor;
 	private Integer height;
@@ -28,7 +27,7 @@ public class User {
 	/**
 	 * 
 	 */
-	public User() {
+	public SwaggerUser() {
 		super();
 	}
 
@@ -42,7 +41,7 @@ public class User {
 	 * @param birthday
 	 * @param userAge
 	 */
-	public User( String userName, String eyeColor, Integer height, Integer weight, Date birthday,
+	public SwaggerUser( String userName, String eyeColor, Integer height, Integer weight, Date birthday,
 			Integer userAge) {
 		super();
 		this.userName = userName;
@@ -52,20 +51,7 @@ public class User {
 		this.birthday = birthday;
 		this.userAge = userAge;
 	}
-	/**
-	 * @return the userId
-	 */
-	public Integer getUserId() {
-		return userId;
-	}
-
-	/**
-	 * @param userId
-	 *            the userId to set
-	 */
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
+	
 
 	/**
 	 * @return the userName
@@ -144,7 +130,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userName=" + userName + ", eyeColor=" + eyeColor + ", height=" + height
+		return "User [ userName=" + userName + ", eyeColor=" + eyeColor + ", height=" + height
 				+ ", weight=" + weight + ", birthday="+ birthday+", userAge=" + userAge + "]";
 	}
 

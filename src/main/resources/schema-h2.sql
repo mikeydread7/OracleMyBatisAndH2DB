@@ -18,4 +18,5 @@ create sequence userIDs_ID increment by 1 start with 1;
 insert into USER_DB values(userIDs_ID.nextval,'Michael','brown',73,140,sysdate-16900,47);  
 insert into USER_DB values(userIDs_ID.nextval,'Steffan','brown',63,89,sysdate-5000,13);  
 insert into USER_DB values(userIDs_ID.nextval,'Louis','brown',70,170,sysdate-16990,48);  
-insert into USER_DB values(userIDs_ID.nextval,'Jeff','brown',68,190sysdate-16800,43); 
+insert into USER_DB values(userIDs_ID.nextval,'Jeff','brown',68,190,sysdate-16800,43); 
+insert into USER_DB values(userIDs_ID.nextval,'Sean','brown',58,170,sysdate-16780,30); 

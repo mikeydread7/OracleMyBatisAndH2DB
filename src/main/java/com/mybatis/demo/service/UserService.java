@@ -2,7 +2,6 @@ package com.mybatis.demo.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mybatis.demo.model.User;
@@ -11,16 +10,31 @@ import com.mybatis.demo.repository.UserRepository;
 @Service
 public class UserService {
 
-	@Autowired
-	private UserRepository userDao;
+	private UserRepository userRepository;
+
+	public UserService(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 
 	public User selectUserById(int userId) {
 
-		return userDao.selectUserById(userId);
+		return userRepository.selectUserById(userId);
+	}
+
+	public void saveUser(User user) {
+		userRepository.saveOrUpdateUser(user);
+	}
+
+	public void deleteUser(int userId) {
+		userRepository.deleteUser(userId);
+	}
+
+	public void updateUser(User user) {
+		userRepository.insertUser(user);
 	}
 
 	public List<User> selectAllUsers() {
 
-		return userDao.selectUserAllUsers();
+		return userRepository.selectUserAllUsers();
 	}
 }

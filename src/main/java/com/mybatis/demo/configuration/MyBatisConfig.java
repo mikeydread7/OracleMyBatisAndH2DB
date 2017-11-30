@@ -12,10 +12,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+@Configuration
 @MapperScan(basePackages = { "com.mybatis.demo.mapper" })
 @EnableTransactionManagement(mode = AdviceMode.PROXY, order = 0)
 public class MyBatisConfig {
@@ -39,7 +42,8 @@ public class MyBatisConfig {
 	@Profile("!h2")
 	public DataSourceTransactionManager transactionManager(DataSource dataSource) throws SQLException {
 		logger.debug("---------> Setting transactionManager DataSource injected:--> {}", dataSource);
-		return new DataSourceTransactionManager(dataSource);
+		return new DataSourceTransactionManager(new LazyConnectionDataSourceProxy(dataSource));
+		//originally was this but trying to improve performance..return new DataSourceTransactionManager(dataSource);
 	}
-
+    
 }

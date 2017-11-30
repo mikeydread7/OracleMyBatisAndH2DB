@@ -21,6 +21,10 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<com.google.code.gson.version>2.8.2</com.google.code.gson.version>
+		<springfox-swagger2.version>2.7.0</springfox-swagger2.version>
+		<springfox-swagger.version>2.6.1</springfox-swagger.version>
+		<!-- <start-class></start-class> -->
 	</properties>
 
 	<dependencies>
@@ -31,6 +35,19 @@
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>1.3.1</version>
+		</dependency>
+		
+		<!--  Suggested  hint to use this when using  @ConfigurationProperties -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-configuration-processor -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-configuration-processor</artifactId>
+		    <version>1.5.3.RELEASE</version> <!--$NO-MVN-MAN-VER$ -->
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc -->
 		<!-- exclude tomcat jdbc connection pool, use HikariCP -->
@@ -49,6 +66,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!--  mainly used to expose different types of information about the running application-->
+		<!-- 	– health, metrics, info, dump, env etc.  -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.data</groupId>
+		    <artifactId>spring-data-rest-hal-browser</artifactId>
+		</dependency>
+		
+		<!--  END Atuator -->
 		<!-- Web with Tomcat + Embed -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -63,18 +92,68 @@
 			<version>12.1.0</version>
 		</dependency>
 		<!-- Spring Boot will use HikariCP automatically -->
-		<dependency>
+		 <dependency>
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
-			<version>2.7.2</version><!--$NO-MVN-MAN-VER$ -->
-			<scope>compile</scope>
+			<!-- <version>2.7.2</version>$NO-MVN-MAN-VER$ -->
+			<!-- <scope>compile</scope> -->
 		</dependency>
+		<!--
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-jvm</artifactId>
+			</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-graphite</artifactId>
+        </dependency>
+        https://mvnrepository.com/artifact/com.codahale.metrics/metrics-healthchecks
+		<dependency>
+		    <groupId>com.codahale.metrics</groupId>
+		    <artifactId>metrics-healthchecks</artifactId>
+		    <version>3.0.2</version>
+		</dependency> -->
+		<!-- Start Google utility  -->
 		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>18.0</version>
 		</dependency>
+		
+    	<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${com.google.code.gson.version}</version> <!--$NO-MVN-MAN-VER$ -->
+		</dependency>
+		<!-- End Google  -->
+		<dependency>
+		  <groupId>com.mikesamuel</groupId>
+		  <artifactId>json-sanitizer</artifactId>
+		  <version>[1.0,)</version>
+		</dependency>
+		<!--   Reading and Writing Using ObjectMapper -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.7.5</version> <!--$NO-MVN-MAN-VER$ -->
+		</dependency>
+		<!-- Start  swagger  -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox-swagger.version}</version>
+		</dependency>
+		 <dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox-swagger.version}</version>
+		</dependency>
+	<!-- End swagger  -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>

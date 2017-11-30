@@ -13,13 +13,30 @@ public class UserRepository {
 
 	@Autowired
 	private UserMapper userMapper;
-	
+
+	public UserRepository(UserMapper userMapper) {
+		this.userMapper = userMapper;
+	}
+
 	public User selectUserById(int userId) {
 		User user = userMapper.queryUserById(userId);
 		return user;
-   }
+	}
+
+	public void saveOrUpdateUser(User user) {
+		userMapper.saveOrUpdateUser(user);
+	}
+
+	public void insertUser(User user) {
+		userMapper.insertUser(user);
+	}
+
+	public void deleteUser(int userId) {
+		userMapper.deleteUser(userId);
+	}
+
 	public List<User> selectUserAllUsers() {
-		return  userMapper.getAllUser();
-		
-   }
+		return userMapper.getAllUser();
+
+	}
 }

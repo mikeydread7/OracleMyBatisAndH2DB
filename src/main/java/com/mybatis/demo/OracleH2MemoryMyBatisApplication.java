@@ -29,5 +29,4 @@ public class OracleH2MemoryMyBatisApplication {
 		SpringApplication.run(OracleH2MemoryMyBatisApplication.class, args);
 		logger.debug("Success!");
 	}
-
 }
