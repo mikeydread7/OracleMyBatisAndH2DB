@@ -12,14 +12,15 @@ SpringBoot - https://projects.spring.io/spring-boot/
 
 Oracle - https://www.oracle.com/database/index.html 
 
-Modified to add 
-===========================
-1. Swagger  document Endpoint and api 
+Modified to add  - PLEASE USE YOUR OWN ORACLE DATABSE
+===================================================================================
+update/change password in com.mybatis.demo.configuration.Credential.java or rework  to use spring properties
+1. Swagger  document EndPoint and api 
   - ${host}:8093/swagger-ui.html  example "localhost:8093/swagger-ui.html"
   
 2. Improve testing 
 
-3. more Endpoints URL  see
+3. more EndPoints URL  see
 
 4. CRUD like application 
 

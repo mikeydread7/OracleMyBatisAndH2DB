@@ -23,21 +23,21 @@ public class UserServiceTest implements MockListOfUsers {
 	@Mock
 	private UserMapper userMapper;
 
-
 	private UserRepository userRepository;
 
 	// *************************************************************************************************
 	// Constants
-	//private final Logger LOG = LoggerFactory.getLogger(UserServiceTest.class);
+	// private final Logger LOG =
+	// LoggerFactory.getLogger(UserServiceTest.class);
 	private UserService userService;
-    
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
 
-	@Before 
+	@Before
 	public void setUp() throws Exception {
-		
+
 		userRepository = new UserRepository(userMapper);
 		userService = new UserService(userRepository);
 	}
@@ -50,27 +50,25 @@ public class UserServiceTest implements MockListOfUsers {
 	public void testAll() {
 		when(userRepository.selectUserAllUsers()).thenReturn(mockEntityUserList);
 		assertTrue(userService.selectAllUsers().size() > 1);
-		
+
 	}
 
 	@Test
 	public void testById() {
 		int userId = 2;
 		when(userRepository.selectUserById(userId)).thenReturn(
-				mockEntityUserList.stream()
-									.filter(e -> e.getUserId().intValue() == userId)
-									.findFirst()
-									.orElse(null));
+				mockEntityUserList.stream().filter(e -> e.getUserId().intValue() == userId).findFirst().orElse(null));
 		assertTrue(userService.selectUserById(userId).getEyeColor().equals("brown"));
 	}
 
 	@Test
 	public void testSaveOrUpdate() {
-		
-		User user = new User(1, "FOO", "brown", 3, 120,new Date(100L), 3);
+
+		User user = new User(1, "FOO", "brown", 3, 120, new Date(100L), 3);
 		userRepository.saveOrUpdateUser(user);
 
 	}
+
 	@Test
 	public void testDelete() {
 
@@ -81,14 +79,9 @@ public class UserServiceTest implements MockListOfUsers {
 	public void testFindById() {
 		int userId = 3;
 		when(userRepository.selectUserById(userId)).thenReturn(
-				mockEntityUserList.stream()
-								.filter(e -> e.getUserId().intValue() == userId)
-								.findFirst()
-								.orElse(null)
-								);
+				mockEntityUserList.stream().filter(e -> e.getUserId().intValue() == userId).findFirst().orElse(null));
 		assertTrue(userService.selectUserById(userId).getUserName().equals("FOOBAR"));
 
 	}
 
-	
 }

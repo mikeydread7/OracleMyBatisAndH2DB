@@ -1,15 +1,16 @@
 package com.mybatis.demo.validators;
 
 import com.google.json.JsonSanitizer;
+
 @SuppressWarnings("serial")
 public class ValidateInput extends RuntimeException {
 
-	public static  final  Boolean jsonCanBeTrusted (String myJsonLikeString) {
+	public static final Boolean jsonCanBeTrusted(String myJsonLikeString) {
 		String wellFormedJson = JsonSanitizer.sanitize(myJsonLikeString);
-		if (null == wellFormedJson){
+		if (null == wellFormedJson) {
 			return false;
 		}
 		return true;
 	}
-	
+
 }

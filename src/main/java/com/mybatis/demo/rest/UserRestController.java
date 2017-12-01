@@ -29,13 +29,12 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-
 //http://localhost:8091/swagger-ui.html - ui
 //http://localhost:8091/v2/api-docs
 @RestController
 @RequestMapping("/mybatis/v2")
 public class UserRestController {
-    
+
 	// *************************************************************************************************
 	// Constants
 	private final Logger LOG = LoggerFactory.getLogger(UserRestController.class);
@@ -52,13 +51,11 @@ public class UserRestController {
 	}
 
 	// Implementation
-	@ApiOperation(value = "Find a user by id", notes = "Retrive User Information", response=  User.class)
-	@ApiResponses(value = {
-	    @ApiResponse(code = 200, message = "Successfully retrieved user"),
-	    @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-	    @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-	    @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	 })
+	@ApiOperation(value = "Find a user by id", notes = "Retrive User Information", response = User.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved user"),
+			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	@RequestMapping(value = "/findUser/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<?> getUser(@PathVariable Integer userId) {
 		LOG.debug("findUser: {}", userId);
@@ -66,34 +63,33 @@ public class UserRestController {
 	}
 
 	@ApiOperation(value = "Find  list of users", notes = "Retrive All User Information", response = UserList.class)
-	@ApiResponses(value = {
-		@ApiResponse(code = 200, message = "Successfully retrieved users list"),
-		@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-		@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-		@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved users list"),
+			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	@RequestMapping(value = "/findAllUser", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<?> getAllUser() {
 		LOG.debug("findAllUser:");
 		return new ResponseEntity<>(userService.selectAllUsers(), HttpStatus.OK);
 	}
-	
-	@ApiOperation(value = "delete user by id", notes ="delete user by id")
-	@RequestMapping(value = "/deleteUser/{userId}", method=RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+
+	@ApiOperation(value = "delete user by id", notes = "delete user by id")
+	@RequestMapping(value = "/deleteUser/{userId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<?> deleteUser(@PathVariable Integer userId) {
 		LOG.debug("deletUser: {}", userId);
 		userService.deleteUser(userId);
-		return new ResponseEntity<>( HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
+
 	@ApiOperation(value = "Add a user", httpMethod = "POST", notes = "Insert new User")
-	@RequestMapping(value = "/insertNewUser",  method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<?> insertNewUser(@RequestBody User user) throws JsonParseException, JsonMappingException, IOException {
-		
+	@RequestMapping(value = "/insertNewUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<?> insertNewUser(@RequestBody User user)
+			throws JsonParseException, JsonMappingException, IOException {
+
 		String jsonLikeString = objectMapper.writeValueAsString(user);
-	    LOG.debug("insert new user: {}", jsonLikeString);
-	    ModelResponse obj = gson.fromJson("{}", ModelResponse.class);
-		if (ValidateInput.jsonCanBeTrusted(jsonLikeString) || null == jsonLikeString){
+		LOG.debug("insert new user: {}", jsonLikeString);
+		ModelResponse obj = gson.fromJson("{}", ModelResponse.class);
+		if (ValidateInput.jsonCanBeTrusted(jsonLikeString) || null == jsonLikeString) {
 			obj.setError(UtilContsants.INVALID_USER_OBJ);
 			obj.setSatus(UtilContsants.FAILED);
 			return new ResponseEntity<>(obj, HttpStatus.BAD_REQUEST);
@@ -101,15 +97,16 @@ public class UserRestController {
 		userService.saveUser(user);
 		return new ResponseEntity<>(obj, HttpStatus.CREATED);
 	}
-	
+
 	@ApiOperation(value = "update a users info", httpMethod = "POST", notes = "Update User")
-	@RequestMapping(value = "/updateUser", method=RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<?> saveOrUpdateUser(@RequestBody User user) throws JsonParseException, JsonMappingException, IOException {
-		
+	@RequestMapping(value = "/updateUser", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<?> saveOrUpdateUser(@RequestBody User user)
+			throws JsonParseException, JsonMappingException, IOException {
+
 		String jsonLikeString = objectMapper.writeValueAsString(user);
-	    LOG.debug("save or update: {}", jsonLikeString);
-	    ModelResponse obj = gson.fromJson("{}", ModelResponse.class);
-		if (ValidateInput.jsonCanBeTrusted(jsonLikeString) || null == jsonLikeString){
+		LOG.debug("save or update: {}", jsonLikeString);
+		ModelResponse obj = gson.fromJson("{}", ModelResponse.class);
+		if (ValidateInput.jsonCanBeTrusted(jsonLikeString) || null == jsonLikeString) {
 			obj.setError(UtilContsants.INVALID_USER_ID);
 			obj.setSatus(UtilContsants.FAILED);
 			return new ResponseEntity<>(obj, HttpStatus.BAD_REQUEST);
@@ -120,6 +117,4 @@ public class UserRestController {
 
 }
 
-
-
-//349 -288
+// 349 -288

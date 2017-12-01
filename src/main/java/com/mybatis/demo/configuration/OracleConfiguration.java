@@ -15,7 +15,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @ConfigurationProperties("oracle")
 @Profile("!h2")
 public class OracleConfiguration {
-  
+
 	@Value("${spring.datasource.driver-class-name}")
 	private String driverClass;
 	@Value("${spring.datasource.url}")
@@ -47,7 +47,6 @@ public class OracleConfiguration {
 	@Value("${datasource.useServerPrepStmts}")
 	private String useServerPrepStmts;
 
-	
 	private HikariConfig getHikariConfig() {
 		HikariConfig config = new HikariConfig();
 		config.setPoolName(poolName);
@@ -56,14 +55,14 @@ public class OracleConfiguration {
 		config.setConnectionTestQuery(validationQuery);
 		config.setConnectionTimeout(connectionTimeout);
 		config.setAutoCommit(isAutoCommit);
-		
+
 		config.addDataSourceProperty("cachePrepStmts", cachePrepStmts);
 		config.addDataSourceProperty("prepStmtCacheSize", prepStmtCacheSize);
-		config.addDataSourceProperty("useServerPrepStmts", useServerPrepStmts); 
-		
+		config.addDataSourceProperty("useServerPrepStmts", useServerPrepStmts);
+
 		return config;
 	}
-	
+
 	public HikariDataSource hikariDataSource() {
 		HikariConfig config = getHikariConfig();
 		config.setDriverClassName(driverClass);
@@ -72,33 +71,31 @@ public class OracleConfiguration {
 		config.setJdbcUrl(jdbcUrl);
 		return new HikariDataSource(config);
 	}
-	
-    @Bean
-    DataSource dataSource() throws SQLException {
 
-    	return  hikariDataSource();
-    }
-	/*
- 	Generic DataSource I might have to add an external pooling
-	@Value("${spring.datasource.url}")
-	private String url;
-	@Value("${spring.datasource.username}")
-	private String username;
-	@Value("${spring.datasource.password}")
-	private String password;
 	@Bean
-    DataSource dataSource() throws SQLException { 
-        OracleDataSource dataSource = new OracleDataSource();
-        dataSource.setUser(username);
-        dataSource.setPassword(Crendentials.getSecurePasswordFromVault()); //controll password loading
-        dataSource.setURL(url);
-        dataSource.setImplicitCachingEnabled(true);
-        dataSource.setFastConnectionFailoverEnabled(true);
-        return dataSource;*/
-    }
-    //short alternative way but not much control
-    /*@ConfigurationProperties(prefix="spring")
-    public DataSource secondaryDataSource() {
-        return DataSourceBuilder.create().build();
-    }*/
+	DataSource dataSource() throws SQLException {
 
+		return hikariDataSource();
+	}
+	/*
+	 * Generic DataSource I might have to add an external pooling
+	 * 
+	 * @Value("${spring.datasource.url}") private String url;
+	 * 
+	 * @Value("${spring.datasource.username}") private String username;
+	 * 
+	 * @Value("${spring.datasource.password}") private String password;
+	 * 
+	 * @Bean DataSource dataSource() throws SQLException { OracleDataSource
+	 * dataSource = new OracleDataSource(); dataSource.setUser(username);
+	 * dataSource.setPassword(Crendentials.getSecurePasswordFromVault());
+	 * //controll password loading dataSource.setURL(url);
+	 * dataSource.setImplicitCachingEnabled(true);
+	 * dataSource.setFastConnectionFailoverEnabled(true); return dataSource;
+	 */
+}
+// short alternative way but not much control
+/*
+ * @ConfigurationProperties(prefix="spring") public DataSource
+ * secondaryDataSource() { return DataSourceBuilder.create().build(); }
+ */

@@ -8,6 +8,7 @@ public class SwaggerUser {
 	private Integer height;
 	private Integer weight;
 	private Date birthday;
+
 	/**
 	 * @return the birthday
 	 */
@@ -16,7 +17,8 @@ public class SwaggerUser {
 	}
 
 	/**
-	 * @param birthday the birthday to set
+	 * @param birthday
+	 *            the birthday to set
 	 */
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
@@ -31,7 +33,6 @@ public class SwaggerUser {
 		super();
 	}
 
-	
 	/**
 	 * 
 	 * @param userName
@@ -41,7 +42,7 @@ public class SwaggerUser {
 	 * @param birthday
 	 * @param userAge
 	 */
-	public SwaggerUser( String userName, String eyeColor, Integer height, Integer weight, Date birthday,
+	public SwaggerUser(String userName, String eyeColor, Integer height, Integer weight, Date birthday,
 			Integer userAge) {
 		super();
 		this.userName = userName;
@@ -51,7 +52,6 @@ public class SwaggerUser {
 		this.birthday = birthday;
 		this.userAge = userAge;
 	}
-	
 
 	/**
 	 * @return the userName
@@ -130,8 +130,8 @@ public class SwaggerUser {
 
 	@Override
 	public String toString() {
-		return "User [ userName=" + userName + ", eyeColor=" + eyeColor + ", height=" + height
-				+ ", weight=" + weight + ", birthday="+ birthday+", userAge=" + userAge + "]";
+		return "User [ userName=" + userName + ", eyeColor=" + eyeColor + ", height=" + height + ", weight=" + weight
+				+ ", birthday=" + birthday + ", userAge=" + userAge + "]";
 	}
 
 }

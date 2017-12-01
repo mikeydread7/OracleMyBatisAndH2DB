@@ -18,42 +18,39 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig  {  
-	
+public class SwaggerConfig {
+
 	@Bean
 	public Docket api() {
-		
-		/*final List<ResponseMessage> responseMessageList = new ArrayList<ResponseMessage>();
-	    responseMessageList
-	        .add(new ResponseMessageBuilder().code(500).message("500 message").responseModel(new ModelRef("Error")).build());
-	    responseMessageList.add(new ResponseMessageBuilder().code(403).message("Forbidden!!!!!").build());
 
-	    return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
-	        .paths(PathSelectors.any()).build().apiInfo(apiInfo()).useDefaultResponseMessages(false)
-	        .globalResponseMessage(RequestMethod.GET, responseMessageList);*/
-		 return new Docket(DocumentationType.SWAGGER_2)
-				.select()
-				.apis(RequestHandlerSelectors.any())
-				.paths(PathSelectors.any())
-				.build();
-	 
+		/*
+		 * final List<ResponseMessage> responseMessageList = new
+		 * ArrayList<ResponseMessage>(); responseMessageList .add(new
+		 * ResponseMessageBuilder().code(500).message("500 message").
+		 * responseModel(new ModelRef("Error")).build());
+		 * responseMessageList.add(new
+		 * ResponseMessageBuilder().code(403).message("Forbidden!!!!!").build())
+		 * ;
+		 * 
+		 * return new Docket(DocumentationType.SWAGGER_2).select().apis(
+		 * RequestHandlerSelectors.any())
+		 * .paths(PathSelectors.any()).build().apiInfo(apiInfo()).
+		 * useDefaultResponseMessages(false)
+		 * .globalResponseMessage(RequestMethod.GET, responseMessageList);
+		 */
+		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
+				.paths(PathSelectors.any()).build();
+
 	}
-   
+
 	@SuppressWarnings("unused")
 	private ApiInfo apiInfo() {
-		
-		return new ApiInfo("My REST API", 
-				"Some custom description of API can be added here.",
-				"API Stuff",
+
+		return new ApiInfo("My REST API", "Some custom description of API can be added here.", "API Stuff",
 				"Terms of service is as is",
-				new Contact("Michael Somers", 
-						"mywww.ibatis-example.com", 
-						"mike1somers@gmail.com"
-						), 
-				"License of API",
-				"API license URL"
-				);
-		
+				new Contact("Michael Somers", "mywww.ibatis-example.com", "mike1somers@gmail.com"), "License of API",
+				"API license URL");
+
 	}
-    
+
 }

@@ -10,7 +10,7 @@ public class Crendentials {
 		 * 
 		 * @return
 		 */
-		
+
 		return "oracleDBPassword";
 	}
 }

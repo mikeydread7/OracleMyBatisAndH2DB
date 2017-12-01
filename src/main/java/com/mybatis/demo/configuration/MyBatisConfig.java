@@ -43,7 +43,8 @@ public class MyBatisConfig {
 	public DataSourceTransactionManager transactionManager(DataSource dataSource) throws SQLException {
 		logger.debug("---------> Setting transactionManager DataSource injected:--> {}", dataSource);
 		return new DataSourceTransactionManager(new LazyConnectionDataSourceProxy(dataSource));
-		//originally was this but trying to improve performance..return new DataSourceTransactionManager(dataSource);
+		// originally was this but trying to improve performance..return new
+		// DataSourceTransactionManager(dataSource);
 	}
-    
+
 }

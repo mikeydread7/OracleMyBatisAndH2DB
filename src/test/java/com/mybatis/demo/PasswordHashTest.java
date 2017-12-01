@@ -1,4 +1,4 @@
-/*package com.mybatis.demo;
+package com.mybatis.demo;
 
 import static org.junit.Assert.assertTrue;
 
@@ -33,28 +33,25 @@ public class PasswordHashTest {
 
 	@Test
 	public void test() {
-		String password ="secret";
-		Md5PasswordEncoder passwordEncoder=  new Md5PasswordEncoder();
+		String password = "secret";
+		Md5PasswordEncoder passwordEncoder = new Md5PasswordEncoder();
 		passwordEncoder.encodePassword(password, null);
 	}
-	
+
 	@Test
 	public void testBrypt() {
-		String password ="userVader";
-		BCryptPasswordEncoder passwordEncoder=  new BCryptPasswordEncoder();
+		String password = "userVader";
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		passwordEncoder.encode(password);
 	}
-	
+
 	@Test
 	public void testDeCryptBrypt() {
-		String passwordUsedToLogIn ="secret";
-		String hashedPassStoredInDb ="$2a$10$kRoS6E2e6RzVu.AHJVEBwOIqs6pmQFkzSM9NIE50n9whIgCeJNOGq";
+		String passwordUsedToLogIn = "secret";
+		String hashedPassStoredInDb = "$2a$10$kRoS6E2e6RzVu.AHJVEBwOIqs6pmQFkzSM9NIE50n9whIgCeJNOGq";
 		String anotherHashPassStoredInDb = "$2a$10$lq7/qTH.Pws51kYd8Sqf0uKJniPMsfcgGUCKWdkl5Wvuj971Ski/i";
-		assertTrue( BCrypt.checkpw(passwordUsedToLogIn, hashedPassStoredInDb));
-		assertTrue( BCrypt.checkpw(passwordUsedToLogIn, anotherHashPassStoredInDb));
+		assertTrue(BCrypt.checkpw(passwordUsedToLogIn, hashedPassStoredInDb));
+		assertTrue(BCrypt.checkpw(passwordUsedToLogIn, anotherHashPassStoredInDb));
 	}
-	
-	
 
 }
-*/

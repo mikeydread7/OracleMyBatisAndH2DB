@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +22,7 @@ import com.mybatis.demo.model.User;
 import com.mybatis.demo.service.UserService;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UserRestControllerTest  implements MockListOfUsers{
+public class UserRestControllerTest implements MockListOfUsers {
 
 	@Mock
 	private HttpServletRequest mockHttpServletRequest;
@@ -32,7 +31,7 @@ public class UserRestControllerTest  implements MockListOfUsers{
 
 	@InjectMocks
 	private UserRestController userRestController;
-    
+
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testAllUsers() {
@@ -41,7 +40,7 @@ public class UserRestControllerTest  implements MockListOfUsers{
 		ResponseEntity<?> results = userRestController.getAllUser();
 		assertTrue("Found values", ((List<User>) results.getBody()).size() == 4);
 		assertEquals(HttpStatus.OK, results.getStatusCode());
-		
+
 	}
 
 	@Test

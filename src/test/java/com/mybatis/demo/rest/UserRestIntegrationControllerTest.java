@@ -29,61 +29,57 @@ import com.mybatis.demo.mapper.UserMapper;
 import com.mybatis.demo.repository.UserRepository;
 import com.mybatis.demo.service.UserService;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = OracleH2MemoryMyBatisApplication.class)
-public class UserRestIntegrationControllerTest  implements MockListOfUsers{
-    
+public class UserRestIntegrationControllerTest implements MockListOfUsers {
+
 	private MockMvc mockMvc;
 
 	@Autowired
-    private WebApplicationContext webApplicationContext;
+	private WebApplicationContext webApplicationContext;
 	@Mock
 	private UserMapper userMapper;
 
 	@Mock
 	private UserRepository userRepository;
-    
+
 	@Mock
 	private UserService userService;
 
 	@InjectMocks
 	private UserRestController userRestController;
 	private final String apiRoot = "/mybatis/v2";
-	
+
 	@Before
-    public void init(){
-        MockitoAnnotations.initMocks(this);
-        userRepository = new UserRepository(userMapper);
+	public void init() {
+		MockitoAnnotations.initMocks(this);
+		userRepository = new UserRepository(userMapper);
 		userService = new UserService(userRepository);
 		when(userMapper.getAllUser()).thenReturn(mockEntityUserList);
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-    }
+		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+	}
+
 	@After
 	public void tearDown() throws Exception {
 	}
+
 	@Test
 	public void testAllUsers() throws Exception {
-		
+
 		assertThat(this.userService).isNotNull();
 		mockMvc.perform(get(apiRoot.concat("/findAllUser")).accept(MediaType.APPLICATION_JSON))
-		 .andExpect(status().isOk())
-         .andDo(print());
+				.andExpect(status().isOk()).andDo(print());
 	}
 
 	@Test
 	public void testFindUser() throws Exception {
-        Integer userId =2; 
-        
+		Integer userId = 2;
+
 		assertThat(this.userService).isNotNull();
 		mockMvc.perform(get(apiRoot.concat("/findUser/").concat(userId.toString())).accept(MediaType.APPLICATION_JSON))
-		 .andExpect(status().isOk())
-		 .andExpect(jsonPath("$.userId", is((userId))))
-         .andExpect(jsonPath("$.userName", is("Steffan")))
-         .andExpect(jsonPath("$.eyeColor", is("brown")))
-         .andExpect(jsonPath("$.weight", is(89)))
-         .andDo(print());
+				.andExpect(status().isOk()).andExpect(jsonPath("$.userId", is((userId))))
+				.andExpect(jsonPath("$.userName", is("Steffan"))).andExpect(jsonPath("$.eyeColor", is("brown")))
+				.andExpect(jsonPath("$.weight", is(89))).andDo(print());
 	}
 
-	
 }

@@ -13,7 +13,8 @@ public class ModelResponse {
 	}
 
 	/**
-	 * @param satus the satus to set
+	 * @param satus
+	 *            the satus to set
 	 */
 	public void setSatus(int satus) {
 		this.satus = satus;

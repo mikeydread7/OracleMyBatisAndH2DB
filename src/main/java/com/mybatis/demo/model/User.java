@@ -9,6 +9,7 @@ public class User {
 	private Integer height;
 	private Integer weight;
 	private Date birthday;
+
 	/**
 	 * @return the birthday
 	 */
@@ -17,7 +18,8 @@ public class User {
 	}
 
 	/**
-	 * @param birthday the birthday to set
+	 * @param birthday
+	 *            the birthday to set
 	 */
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
@@ -32,8 +34,6 @@ public class User {
 		super();
 	}
 
-	
-	
 	/**
 	 * @param userId
 	 * @param userName
@@ -148,7 +148,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userName=" + userName + ", eyeColor=" + eyeColor + ", height=" + height
-				+ ", weight=" + weight + ", birthday="+ birthday+", userAge=" + userAge + "]";
+				+ ", weight=" + weight + ", birthday=" + birthday + ", userAge=" + userAge + "]";
 	}
 
 }
