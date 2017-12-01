@@ -30,6 +30,7 @@ public class SecurityConfig {
 	// fix testing credentials
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		LOG.info("Setting in-memory security using the user input...");
 		auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
 	}
 	// for a dynamic way of creating testing credentials
