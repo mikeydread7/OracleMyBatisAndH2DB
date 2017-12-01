@@ -3,8 +3,7 @@ package com.mybatis.demo.service;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
-import java.util.Date;
-
+import java.sql.Date;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -24,7 +23,7 @@ public class UserServiceTest implements MockListOfUsers {
 	@Mock
 	private UserMapper userMapper;
 
-	@Mock
+
 	private UserRepository userRepository;
 
 	// *************************************************************************************************
@@ -51,6 +50,7 @@ public class UserServiceTest implements MockListOfUsers {
 	public void testAll() {
 		when(userRepository.selectUserAllUsers()).thenReturn(mockEntityUserList);
 		assertTrue(userService.selectAllUsers().size() > 1);
+		
 	}
 
 	@Test
@@ -67,7 +67,7 @@ public class UserServiceTest implements MockListOfUsers {
 	@Test
 	public void testSaveOrUpdate() {
 		
-		User user = new User("testUserName",  "testEyeColor", 72, 156, (java.sql.Date) new Date() , 45);
+		User user = new User(1, "FOO", "brown", 3, 120,new Date(100L), 3);
 		userRepository.saveOrUpdateUser(user);
 
 	}

@@ -14,15 +14,15 @@ Oracle - https://www.oracle.com/database/index.html
 
 Modified to add 
 ===========================
-1. Swagger  document endpoint and api 
+1. Swagger  document Endpoint and api 
   - ${host}:8093/swagger-ui.html  example "localhost:8093/swagger-ui.html"
   
 2. Improve testing 
 
-3. more endpoints URL  see
+3. more Endpoints URL  see
 
 4. CRUD like application 
 
 5. Basic Validation 
 
-6. Adopted implemented code to dynamically set username and password for testing the spring security basic set up.
+6. Basic Spring Security Included/Added

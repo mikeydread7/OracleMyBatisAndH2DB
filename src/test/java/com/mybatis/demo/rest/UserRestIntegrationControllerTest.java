@@ -18,7 +18,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -30,11 +29,11 @@ import com.mybatis.demo.mapper.UserMapper;
 import com.mybatis.demo.repository.UserRepository;
 import com.mybatis.demo.service.UserService;
 
-@ActiveProfiles("h2")
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = OracleH2MemoryMyBatisApplication.class)
 public class UserRestIntegrationControllerTest  implements MockListOfUsers{
-
+    
 	private MockMvc mockMvc;
 
 	@Autowired
@@ -44,19 +43,20 @@ public class UserRestIntegrationControllerTest  implements MockListOfUsers{
 
 	@Mock
 	private UserRepository userRepository;
-
+    
+	@Mock
 	private UserService userService;
 
 	@InjectMocks
 	private UserRestController userRestController;
-	private final String apiRoot = "/ibatis/v2";
+	private final String apiRoot = "/mybatis/v2";
 	
 	@Before
     public void init(){
         MockitoAnnotations.initMocks(this);
         userRepository = new UserRepository(userMapper);
 		userService = new UserService(userRepository);
-		when(userRepository.selectUserAllUsers()).thenReturn(mockEntityUserList);
+		when(userMapper.getAllUser()).thenReturn(mockEntityUserList);
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 	@After

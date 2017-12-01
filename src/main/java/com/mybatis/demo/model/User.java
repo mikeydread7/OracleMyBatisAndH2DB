@@ -33,8 +33,9 @@ public class User {
 	}
 
 	
+	
 	/**
-	 * 
+	 * @param userId
 	 * @param userName
 	 * @param eyeColor
 	 * @param height
@@ -42,9 +43,10 @@ public class User {
 	 * @param birthday
 	 * @param userAge
 	 */
-	public User( String userName, String eyeColor, Integer height, Integer weight, Date birthday,
+	public User(Integer userId, String userName, String eyeColor, Integer height, Integer weight, Date birthday,
 			Integer userAge) {
 		super();
+		this.userId = userId;
 		this.userName = userName;
 		this.eyeColor = eyeColor;
 		this.height = height;
@@ -52,6 +54,7 @@ public class User {
 		this.birthday = birthday;
 		this.userAge = userAge;
 	}
+
 	/**
 	 * @return the userId
 	 */

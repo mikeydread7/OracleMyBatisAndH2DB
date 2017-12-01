@@ -3,52 +3,50 @@
  */
 package com.mybatis.demo.configuration;
 
-import java.util.NoSuchElementException;
-import java.util.Scanner;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 
+
 /**
- *  
- * credits code written at  https://stackoverflow.com/questions/37285016/what-is-username-and-password-when-starting-spring-boot-with-tomcat
- *
+ * 
+ * credits code written at
+ * https://stackoverflow.com/questions/37285016/what-is-username-and-password-when-starting-spring-boot-with-tomcat
+ * @see <a href="https://stackoverflow.com/questions/37285016/what-is-username-and-password-when-starting-spring-boot-with-tomcat">Dynamic way of creating credential for testing</a>
  */
 
 @Configuration("securityConfig")
-//@EnableWebSecurity
+// @EnableWebSecurity
 public class SecurityConfig {
 
-    
-    //*************************************************************************************************
+	// *************************************************************************************************
 	// Constants
 	private final Logger LOG = LoggerFactory.getLogger(SecurityConfig.class);
-    @Autowired
+    //fix  testing credentials
+	@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        LOG.info("Setting in-memory security using the user input...");
+        auth
+            .inMemoryAuthentication()
+                .withUser("user").password("password").roles("USER");
+    }
+	// for a dynamic way of creating testing credentials
+	/*@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		LOG.info("Setting in-memory security using the user input...");
+
         Scanner scanner = new Scanner(System.in);
-        
         String inputUser = null;
         String inputPassword = null;
         System.out.println("\nPlease set the admin credentials for this web application");
         while (true) {
             System.out.print("user: ");
-            try{
-	            inputUser = scanner.nextLine(); 
-	            System.out.print("password: ");
-	            inputPassword = scanner.nextLine();
-	            System.out.print("confirm password: ");
-            }
-            catch(NoSuchElementException noex){
-            	System.err.println("\nPlease restart the application manually ");
-            	System.err.println("Unable to execute restart via spring devtools: ".concat(noex.getMessage()));
-            	System.exit(1);
-            }
+            inputUser = scanner.nextLine();
+            System.out.print("password: ");
+            inputPassword = scanner.nextLine();
+            System.out.print("confirm password: ");
             String inputPasswordConfirm = scanner.nextLine();
-            
 
             if (inputUser.isEmpty()) {
                 System.out.println("Error: user must be set - please try again");
@@ -70,5 +68,5 @@ public class SecurityConfig {
                 .password(inputPassword)
                 .roles("USER");
         }
-    }
+    }*/
 }

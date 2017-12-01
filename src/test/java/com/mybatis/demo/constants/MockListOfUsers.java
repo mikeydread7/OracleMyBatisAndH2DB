@@ -1,20 +1,23 @@
 package com.mybatis.demo.constants;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
+import org.springframework.test.context.ActiveProfiles;
 
 import com.mybatis.demo.model.User;
 
+@ActiveProfiles("h2")
 public interface MockListOfUsers {
     
 	@SuppressWarnings("serial")
 	List<User> mockEntityUserList = new ArrayList<User>() {
 		{	
-			add(new User( "FOO", "brown", 3, 120,(java.sql.Date) new Date(), 3));
-			add(new User( "BAR", "brown", 4, 150,(java.sql.Date) new Date(), 4));
-			add(new User( "FOOBAR", "brown", 5, 170,(java.sql.Date) new Date(),  5));
-			add(new User( "BARFOO", "brown", 6, 132, (java.sql.Date)new Date(),  6));
+			add(new User( 1,"FOO", "brown", 3, 120,new Date(1003L), 3));
+			add(new User( 2,"BAR", "brown", 4, 150,new Date(1020L), 4));
+			add(new User( 3,"FOOBAR", "brown", 5, 170,new Date(1300L),  5));
+			add(new User( 4,"BARFOO", "brown", 6, 132,new Date(1050L),  6));
 		}
 	};
 	
