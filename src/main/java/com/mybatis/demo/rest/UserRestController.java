@@ -29,8 +29,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-//http://localhost:8091/swagger-ui.html - ui
-//http://localhost:8091/v2/api-docs
 @RestController
 @RequestMapping("/mybatis/v2")
 public class UserRestController {
@@ -116,5 +114,3 @@ public class UserRestController {
 	}
 
 }
-
-// 349 -288
