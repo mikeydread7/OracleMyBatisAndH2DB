@@ -21,10 +21,14 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<spring-boot-configuration-processor-version>1.5.3.RELEASE</spring-boot-configuration-processor-version>
 		<com.google.code.gson.version>2.8.2</com.google.code.gson.version>
 		<springfox-swagger2.version>2.7.0</springfox-swagger2.version>
 		<springfox-swagger.version>2.6.1</springfox-swagger.version>
-		<!-- <start-class></start-class> -->
+		<ojdbc7-version>12.1.0</ojdbc7-version>
+		<mybatis-spring-version>1.3.1</mybatis-spring-version>
+		<guava-version>18.0</guava-version>
+		<jackson-databind-version>2.7.5</jackson-databind-version>
 	</properties>
 
 	<dependencies>
@@ -34,7 +38,7 @@
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>1.3.1</version>
+			<version>${mybatis-spring-version}</version>
 		</dependency>
 		
 		<!--  Suggested  hint to use this when using  @ConfigurationProperties -->
@@ -42,21 +46,8 @@
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-configuration-processor</artifactId>
-		    <version>1.5.3.RELEASE</version> <!--$NO-MVN-MAN-VER$ -->
+		    <version>${spring-boot-configuration-processor-version}</version> <!--$NO-MVN-MAN-VER$ -->
 		</dependency>
-		
-		<!-- 	– health, metrics, info, dump, env etc.  -->
-		 <dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency>
-		    <groupId>org.springframework.data</groupId>
-		    <artifactId>spring-data-rest-hal-browser</artifactId>
-		</dependency>
-		
-		<!--  END Atuator -->
-
 		<!--  Spring Security -->
 	 	<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -102,23 +93,20 @@
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc7</artifactId>
-			<version>12.1.0</version>
+			<version>${ojdbc7-version}</version>
 		</dependency>
 		<!-- Spring Boot will use HikariCP automatically -->
 		 <dependency>
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
-			<!-- <version>2.7.2</version>$NO-MVN-MAN-VER$ -->
-			<!-- <scope>compile</scope> -->
 		</dependency>
 		<!-- Start Google utility  -->
 		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>18.0</version>
+			<version>${guava-version}</version>
 		</dependency>
-		
     	<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
@@ -134,7 +122,7 @@
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
-		    <version>2.7.5</version> <!--$NO-MVN-MAN-VER$ -->
+		    <version>${jackson-databind-version}</version> <!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 		<!-- Start  swagger  -->
 		<dependency>
@@ -147,7 +135,7 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>${springfox-swagger.version}</version>
 		</dependency>
-	<!-- End swagger  -->
+		<!-- End swagger  -->
 		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -164,6 +152,8 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 		</dependency>
+		<!-- H2 Database Done-->
+		<!-- Testing Done-->
 	</dependencies>
     <reporting>
 		<plugins>
