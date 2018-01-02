@@ -8,10 +8,6 @@ import org.springframework.context.annotation.ComponentScan;
 
 /**
  * 
- * mvn spring-boot:run -Drun.jvmArguments="-Dspring.profiles.active=production"
- * mvn spring-boot:run -Drun.jvmArguments="-Xdebug
- * -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005
- * -Dspring.profiles.active=jpa"
  * 
  * @author Michael Somers, mike1somers@gmail.com
  *
