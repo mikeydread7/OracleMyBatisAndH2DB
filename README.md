@@ -26,5 +26,3 @@ Modified to add  - PLEASE USE YOUR OWN ORACLE DATABSE
 4. CRUD like application 
 
 5. Basic Validation 
-
-6. Basic Spring Security Included/Added
