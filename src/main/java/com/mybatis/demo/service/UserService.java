@@ -37,4 +37,9 @@ public class UserService {
 
 		return userRepository.selectUserAllUsers();
 	}
+
+	public Boolean exists(User user) {
+		return (null == userRepository.selectUserById(user.getUserId()));
+		
+	}
 }

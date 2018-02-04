@@ -22,7 +22,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
 import com.mybatis.demo.OracleH2MemoryMyBatisApplication;
 import com.mybatis.demo.constants.MockListOfUsers;
 import com.mybatis.demo.mapper.UserMapper;
@@ -31,7 +30,7 @@ import com.mybatis.demo.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = OracleH2MemoryMyBatisApplication.class)
-public class UserRestIntegrationControllerTest implements MockListOfUsers {
+public class UserRestIntegrationControllerGetTest implements MockListOfUsers {
 
 	private MockMvc mockMvc;
 
@@ -49,7 +48,6 @@ public class UserRestIntegrationControllerTest implements MockListOfUsers {
 	@InjectMocks
 	private UserRestController userRestController;
 	private final String apiRoot = "/mybatis/v2";
-
 	@Before
 	public void init() {
 		MockitoAnnotations.initMocks(this);
@@ -67,7 +65,7 @@ public class UserRestIntegrationControllerTest implements MockListOfUsers {
 	public void testAllUsers() throws Exception {
 
 		assertThat(this.userService).isNotNull();
-		mockMvc.perform(get(apiRoot.concat("/findAllUser")).accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get(apiRoot.concat("/user")).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andDo(print());
 	}
 
@@ -76,10 +74,9 @@ public class UserRestIntegrationControllerTest implements MockListOfUsers {
 		Integer userId = 2;
 
 		assertThat(this.userService).isNotNull();
-		mockMvc.perform(get(apiRoot.concat("/findUser/").concat(userId.toString())).accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get(apiRoot.concat("/user/").concat(userId.toString())).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andExpect(jsonPath("$.userId", is((userId))))
 				.andExpect(jsonPath("$.userName", is("Steffan"))).andExpect(jsonPath("$.eyeColor", is("brown")))
 				.andExpect(jsonPath("$.weight", is(89))).andDo(print());
 	}
-
 }

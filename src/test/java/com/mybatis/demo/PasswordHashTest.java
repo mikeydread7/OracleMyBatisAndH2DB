@@ -2,8 +2,6 @@ package com.mybatis.demo;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.UUID;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

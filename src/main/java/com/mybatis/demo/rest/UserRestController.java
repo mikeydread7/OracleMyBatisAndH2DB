@@ -53,9 +53,9 @@ public class UserRestController {
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-	@RequestMapping(value = "/findUser/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<?> getUser(@PathVariable Integer userId) {
-		LOG.debug("findUser: {}", userId);
+		LOG.info("findUser: {}", userId);
 		return new ResponseEntity<>(userService.selectUserById(userId), HttpStatus.OK);
 	}
 
@@ -64,27 +64,27 @@ public class UserRestController {
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-	@RequestMapping(value = "/findAllUser", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/user", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<?> getAllUser() {
-		LOG.debug("findAllUser:");
+		LOG.info("findAllUser:");
 		return new ResponseEntity<>(userService.selectAllUsers(), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "delete user by id", notes = "delete user by id")
-	@RequestMapping(value = "/deleteUser/{userId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/user/{userId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<?> deleteUser(@PathVariable Integer userId) {
-		LOG.debug("deletUser: {}", userId);
+		LOG.info("deletUser: {}", userId);
 		userService.deleteUser(userId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "Add a user", httpMethod = "POST", notes = "Insert new User")
-	@RequestMapping(value = "/insertNewUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/user", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<?> insertNewUser(@RequestBody User user)
 			throws JsonParseException, JsonMappingException, IOException {
 
 		String jsonLikeString = objectMapper.writeValueAsString(user);
-		LOG.debug("insert new user: {}", jsonLikeString);
+		LOG.info("insert new user: {}", jsonLikeString);
 		ModelResponse obj = gson.fromJson("{}", ModelResponse.class);
 		if (ValidateInput.jsonCanBeTrusted(jsonLikeString) || null == jsonLikeString) {
 			obj.setError(UtilContsants.INVALID_USER_OBJ);
@@ -95,13 +95,13 @@ public class UserRestController {
 		return new ResponseEntity<>(obj, HttpStatus.CREATED);
 	}
 
-	@ApiOperation(value = "update a users info", httpMethod = "POST", notes = "Update User")
-	@RequestMapping(value = "/updateUser", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "update a users info", httpMethod = "PUT", notes = "Update User")
+	@RequestMapping(value = "/user", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<?> saveOrUpdateUser(@RequestBody User user)
 			throws JsonParseException, JsonMappingException, IOException {
 
 		String jsonLikeString = objectMapper.writeValueAsString(user);
-		LOG.debug("save or update: {}", jsonLikeString);
+		LOG.info("save or update: {}", jsonLikeString);
 		ModelResponse obj = gson.fromJson("{}", ModelResponse.class);
 		if (ValidateInput.jsonCanBeTrusted(jsonLikeString) || null == jsonLikeString) {
 			obj.setError(UtilContsants.INVALID_USER_ID);

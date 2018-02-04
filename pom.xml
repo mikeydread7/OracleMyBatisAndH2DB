@@ -29,6 +29,7 @@
 		<mybatis-spring-version>1.3.1</mybatis-spring-version>
 		<guava-version>18.0</guava-version>
 		<jackson-databind-version>2.7.5</jackson-databind-version>
+		
 	</properties>
 
 	<dependencies>
@@ -88,13 +89,20 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc6 -->
-		<!-- Oracle JDBC driver -->
+		
 		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc7</artifactId>
-			<version>${ojdbc7-version}</version>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.18</version>
+			<scope>compile</scope>
 		</dependency>
+		
+		<!-- Oracle JDBC driver  ojdbc6.jar example-->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0</version>
+        </dependency>
 		<!-- Spring Boot will use HikariCP automatically -->
 		 <dependency>
 			<groupId>com.zaxxer</groupId>
@@ -135,12 +143,9 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>${springfox-swagger.version}</version>
 		</dependency>
+		
 		<!-- End swagger  -->
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency> -->
+		
 		<!-- Testing -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -154,6 +159,7 @@
 		</dependency>
 		<!-- H2 Database Done-->
 		<!-- Testing Done-->
+		
 	</dependencies>
     <reporting>
 		<plugins>
