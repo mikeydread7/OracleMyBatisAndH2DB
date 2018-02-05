@@ -1,4 +1,4 @@
-package com.mybatis.demo.validators;
+package com.mybatis.demo.utils;
 
 import com.google.json.JsonSanitizer;
 

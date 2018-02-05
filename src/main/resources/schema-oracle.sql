@@ -1,8 +1,6 @@
 
-drop sequence userIDs_ID;
+drop sequence user_id_seq;
 drop table   USER_DB;
-commit;
-
 
 create table  USER_DB  
 (  
@@ -15,10 +13,10 @@ create table  USER_DB
  userAge number(4) not null  
 );  
 
-create sequence userIDs_ID increment by 1 start with 1;
+create sequence user_id_seq increment by 1 start with 1;
 
-insert into USER_DB values(userIDs_ID.nextval,'Michael Somers','brown',73,140,sysdate-16900,47);  
-insert into USER_DB values(userIDs_ID.nextval,'Steffan Somers','brown',63,89,sysdate-5000,13);  
-insert into USER_DB values(userIDs_ID.nextval,'Louis B Turner','brown',70,170,sysdate-16990,48);  
-insert into USER_DB values(userIDs_ID.nextval,'Jeff C Turner', 'brown',68,190,sysdate-16800,43); 
-insert into USER_DB values(userIDs_ID.nextval,'Sean C Thomas', 'brown',58,170,sysdate-16780,30); 
+insert into USER_DB values(user_id_seq.nextval,'Michael','brown',73,140,sysdate-16900,47);  
+insert into USER_DB values(user_id_seq.nextval,'Steffan','brown',63,89,sysdate-5000,13);  
+insert into USER_DB values(user_id_seq.nextval,'Louis','brown',70,170,sysdate-16990,48);  
+insert into USER_DB values(user_id_seq.nextval,'Jeff','brown',68,190,sysdate-16800,43); 
+insert into USER_DB values(user_id_seq.nextval,'Sean','brown',58,170,sysdate-16780,30); 

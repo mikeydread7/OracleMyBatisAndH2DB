@@ -65,7 +65,7 @@ public class UserServiceTest implements MockListOfUsers {
 	public void testSaveOrUpdate() {
 
 		User user = new User(1, "FOO", "brown", 3, 120, new Date(100L), 3);
-		userRepository.saveOrUpdateUser(user);
+		userRepository.saveOrUpdateUser(user, 3);
 
 	}
 

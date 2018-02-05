@@ -22,15 +22,16 @@ public class UserService {
 	}
 
 	public void saveUser(User user) {
-		userRepository.saveOrUpdateUser(user);
+		userRepository.insertUser(user);
+		
 	}
 
 	public void deleteUser(int userId) {
 		userRepository.deleteUser(userId);
 	}
 
-	public void updateUser(User user) {
-		userRepository.insertUser(user);
+	public void updateUser(User user, int id) {
+		userRepository.saveOrUpdateUser(user, id);
 	}
 
 	public List<User> selectAllUsers() {

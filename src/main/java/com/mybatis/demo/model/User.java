@@ -1,5 +1,6 @@
 package com.mybatis.demo.model;
 
+
 import java.sql.Date;
 
 public class User {

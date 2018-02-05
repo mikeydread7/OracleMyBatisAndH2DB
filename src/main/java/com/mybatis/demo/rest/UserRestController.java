@@ -23,7 +23,7 @@ import com.mybatis.demo.model.ModelResponse;
 import com.mybatis.demo.model.User;
 import com.mybatis.demo.model.UserList;
 import com.mybatis.demo.service.UserService;
-import com.mybatis.demo.validators.ValidateInput;
+import com.mybatis.demo.utils.ValidateInput;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -77,6 +77,7 @@ public class UserRestController {
 		userService.deleteUser(userId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+	//srf().disable()
 
 	@ApiOperation(value = "Add a user", httpMethod = "POST", notes = "Insert new User")
 	@RequestMapping(value = "/user", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -86,7 +87,7 @@ public class UserRestController {
 		String jsonLikeString = objectMapper.writeValueAsString(user);
 		LOG.info("insert new user: {}", jsonLikeString);
 		ModelResponse obj = gson.fromJson("{}", ModelResponse.class);
-		if (ValidateInput.jsonCanBeTrusted(jsonLikeString) || null == jsonLikeString) {
+		if (!ValidateInput.jsonCanBeTrusted(jsonLikeString) || null == jsonLikeString) {
 			obj.setError(UtilContsants.INVALID_USER_OBJ);
 			obj.setSatus(UtilContsants.FAILED);
 			return new ResponseEntity<>(obj, HttpStatus.BAD_REQUEST);
@@ -96,19 +97,19 @@ public class UserRestController {
 	}
 
 	@ApiOperation(value = "update a users info", httpMethod = "PUT", notes = "Update User")
-	@RequestMapping(value = "/user", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<?> saveOrUpdateUser(@RequestBody User user)
+	@RequestMapping(value = "/user/{userId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<?> saveOrUpdateUser(@RequestBody User user, @PathVariable("userId") Integer userId)
 			throws JsonParseException, JsonMappingException, IOException {
 
 		String jsonLikeString = objectMapper.writeValueAsString(user);
 		LOG.info("save or update: {}", jsonLikeString);
 		ModelResponse obj = gson.fromJson("{}", ModelResponse.class);
-		if (ValidateInput.jsonCanBeTrusted(jsonLikeString) || null == jsonLikeString) {
+		if (!ValidateInput.jsonCanBeTrusted(jsonLikeString) || null == jsonLikeString) {
 			obj.setError(UtilContsants.INVALID_USER_ID);
 			obj.setSatus(UtilContsants.FAILED);
 			return new ResponseEntity<>(obj, HttpStatus.BAD_REQUEST);
 		}
-		userService.updateUser(user);
+		userService.updateUser(user, userId);
 		return new ResponseEntity<>(obj, HttpStatus.ACCEPTED);
 	}
 

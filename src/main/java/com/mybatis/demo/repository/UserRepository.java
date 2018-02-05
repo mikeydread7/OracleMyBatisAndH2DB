@@ -23,8 +23,9 @@ public class UserRepository {
 		return user;
 	}
 
-	public void saveOrUpdateUser(User user) {
-		userMapper.saveOrUpdateUser(user);
+	public void saveOrUpdateUser(User user, int id) {
+		
+		userMapper.saveOrUpdateUser(user, id);
 	}
 
 	public void insertUser(User user) {
