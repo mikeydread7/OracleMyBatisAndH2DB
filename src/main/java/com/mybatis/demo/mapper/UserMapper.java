@@ -23,14 +23,13 @@ public interface UserMapper {
 
 	@Insert("INSERT into USER_DB VALUES (user_id_seq.nextval, #{User.userName},#{User.eyeColor},"
 			+ "#{User.height},#{User.weight},#{User.birthday},#{User.userAge} )")
-	void insertUser(@Param("User")User user);
+	void insertUser(@Param("User") User user);
 
 	@Update("UPDATE USER_DB SET userName=#{User.userName}, eyeColor=#{User.eyeColor}, "
 			+ "height=#{User.height}, weight=#{User.weight}, birthday=#{User.birthday}, "
 			+ "userAge=#{User.userAge} where userId=#{id}")
-	void saveOrUpdateUser(@Param("User")User user, @Param("id") int id);
-	
+	void saveOrUpdateUser(@Param("User") User user, @Param("id") int id);
 
 	@Delete("DELETE FROM USER_DB WHERE userId=#{id}")
-	void deleteUser(  @Param("id")int id);
+	void deleteUser(@Param("id") int id);
 }

@@ -23,7 +23,7 @@ public class UserService {
 
 	public void saveUser(User user) {
 		userRepository.insertUser(user);
-		
+
 	}
 
 	public void deleteUser(int userId) {
@@ -41,6 +41,6 @@ public class UserService {
 
 	public Boolean exists(User user) {
 		return (null == userRepository.selectUserById(user.getUserId()));
-		
+
 	}
 }

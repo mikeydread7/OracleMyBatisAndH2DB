@@ -77,7 +77,7 @@ public class UserRestController {
 		userService.deleteUser(userId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	//srf().disable()
+	// srf().disable()
 
 	@ApiOperation(value = "Add a user", httpMethod = "POST", notes = "Insert new User")
 	@RequestMapping(value = "/user", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

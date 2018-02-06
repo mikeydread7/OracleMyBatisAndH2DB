@@ -24,7 +24,7 @@ public class UserRepository {
 	}
 
 	public void saveOrUpdateUser(User user, int id) {
-		
+
 		userMapper.saveOrUpdateUser(user, id);
 	}
 

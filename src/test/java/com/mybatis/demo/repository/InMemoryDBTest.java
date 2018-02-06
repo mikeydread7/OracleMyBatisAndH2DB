@@ -22,22 +22,19 @@ import com.mybatis.demo.model.User;
 @Transactional
 @ActiveProfiles("h2")
 public class InMemoryDBTest {
-     
-    @Resource
-    private UserRepository userRepository;
-     
-    @Test
-    public void givenStudent_whenSave_thenGetOk() {
-    	String userName = "JohnBGood";
-    	User user = new User(1, userName,"blue",70,145,new Date(122L),47); 
-           userRepository.insertUser(user);
-         
-        List<User> userSaved =  userRepository.selectUserAllUsers();
-                
-        		User userFound = userSaved.stream()
-        		.filter(e->e.getUserName().equals(userName))
-        		.findFirst().orElseGet(null);
-        		 assertTrue( null != userFound &&  userFound.getUserName().equals(userName));
-    }
-}
 
+	@Resource
+	private UserRepository userRepository;
+
+	@Test
+	public void givenStudent_whenSave_thenGetOk() {
+		String userName = "JohnBGood";
+		User user = new User(1, userName, "blue", 70, 145, new Date(122L), 47);
+		userRepository.insertUser(user);
+
+		List<User> userSaved = userRepository.selectUserAllUsers();
+
+		User userFound = userSaved.stream().filter(e -> e.getUserName().equals(userName)).findFirst().orElseGet(null);
+		assertTrue(null != userFound && userFound.getUserName().equals(userName));
+	}
+}

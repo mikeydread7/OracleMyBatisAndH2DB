@@ -25,10 +25,6 @@ public class UserServiceTest implements MockListOfUsers {
 
 	private UserRepository userRepository;
 
-	// *************************************************************************************************
-	// Constants
-	// private final Logger LOG =
-	// LoggerFactory.getLogger(UserServiceTest.class);
 	private UserService userService;
 
 	@BeforeClass

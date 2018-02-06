@@ -48,6 +48,7 @@ public class UserRestIntegrationControllerGetTest implements MockListOfUsers {
 	@InjectMocks
 	private UserRestController userRestController;
 	private final String apiRoot = "/mybatis/v2";
+
 	@Before
 	public void init() {
 		MockitoAnnotations.initMocks(this);
@@ -65,8 +66,8 @@ public class UserRestIntegrationControllerGetTest implements MockListOfUsers {
 	public void testAllUsers() throws Exception {
 
 		assertThat(this.userService).isNotNull();
-		mockMvc.perform(get(apiRoot.concat("/user")).accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk()).andDo(print());
+		mockMvc.perform(get(apiRoot.concat("/user")).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+				.andDo(print());
 	}
 
 	@Test

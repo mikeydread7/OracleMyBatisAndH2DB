@@ -26,7 +26,7 @@ public class MyBatisConfig {
 
 	@Bean
 	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-		logger.debug("---------> Setting SqlSessionFactory");
+		logger.debug("Setting SqlSessionFactory");
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
 		return sessionFactory.getObject();
@@ -34,17 +34,14 @@ public class MyBatisConfig {
 
 	@Bean(destroyMethod = "clearCache")
 	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
-		logger.debug("---------> Setting SqlSessionTemplate");
+		logger.debug("Setting SqlSessionTemplate");
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}
 
 	@Bean
 	@Profile("!h2")
 	public DataSourceTransactionManager transactionManager(DataSource dataSource) throws SQLException {
-		logger.debug("---------> Setting transactionManager DataSource injected:--> {}", dataSource);
 		return new DataSourceTransactionManager(new LazyConnectionDataSourceProxy(dataSource));
-		// originally was this but trying to improve performance..return new
-		// DataSourceTransactionManager(dataSource);
 	}
 
 }

@@ -77,25 +77,10 @@ public class OracleConfiguration {
 
 		return hikariDataSource();
 	}
+
+	// short alternative way but not much control
 	/*
-	 * Generic DataSource I might have to add an external pooling
-	 * 
-	 * @Value("${spring.datasource.url}") private String url;
-	 * 
-	 * @Value("${spring.datasource.username}") private String username;
-	 * 
-	 * @Value("${spring.datasource.password}") private String password;
-	 * 
-	 * @Bean DataSource dataSource() throws SQLException { OracleDataSource
-	 * dataSource = new OracleDataSource(); dataSource.setUser(username);
-	 * dataSource.setPassword(Crendentials.getSecurePasswordFromVault());
-	 * //controll password loading dataSource.setURL(url);
-	 * dataSource.setImplicitCachingEnabled(true);
-	 * dataSource.setFastConnectionFailoverEnabled(true); return dataSource;
+	 * @ConfigurationProperties(prefix="spring") public DataSource
+	 * secondaryDataSource() { return DataSourceBuilder.create().build(); }
 	 */
 }
-// short alternative way but not much control
-/*
- * @ConfigurationProperties(prefix="spring") public DataSource
- * secondaryDataSource() { return DataSourceBuilder.create().build(); }
- */

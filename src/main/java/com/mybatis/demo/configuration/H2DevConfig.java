@@ -17,24 +17,25 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 @Configuration("H2DevConfig")
 @Profile("h2")
 public class H2DevConfig {
-    
+
 	@Autowired
 	private DataSource dataSource;
-	
+
 	@Bean
 	public ServletRegistrationBean h2servletRegistration() {
 
 		ServletRegistrationBean registrationBean = new ServletRegistrationBean(new WebServlet());
 		registrationBean.addUrlMappings("/h2-console/*");
-		
-		
-		// schema init
-	   /* Resource initSchema = new ClassPathResource("schema-h2.sql");
-	    //Resource initData = new ClassPathResource("scripts/data-h2.sql");
-	    DatabasePopulator databasePopulator = new ResourceDatabasePopulator(initSchema);
-	    DatabasePopulatorUtils.execute(databasePopulator, dataSource);*/
 
-		
+		// schema init
+		/*
+		 * Resource initSchema = new ClassPathResource("schema-h2.sql");
+		 * //Resource initData = new ClassPathResource("scripts/data-h2.sql");
+		 * DatabasePopulator databasePopulator = new
+		 * ResourceDatabasePopulator(initSchema);
+		 * DatabasePopulatorUtils.execute(databasePopulator, dataSource);
+		 */
+
 		return registrationBean;
 	}
 }

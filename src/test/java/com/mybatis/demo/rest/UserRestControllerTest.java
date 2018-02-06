@@ -40,15 +40,13 @@ public class UserRestControllerTest implements MockListOfUsers {
 		ResponseEntity<?> results = userRestController.getAllUser();
 		assertTrue("Found values", ((List<User>) results.getBody()).size() == 4);
 		assertEquals(HttpStatus.OK, results.getStatusCode());
-
 	}
 
 	@Test
 	public void testFindUser() {
 
 		Integer userId = 3;
-		when(mockHttpServletRequest.getAttribute(anyString()))
-				.thenReturn("/user/".concat(Integer.toString(userId)));
+		when(mockHttpServletRequest.getAttribute(anyString())).thenReturn("/user/".concat(Integer.toString(userId)));
 		when((userService.selectUserById(userId))).thenReturn(find(userId));
 		ResponseEntity<?> results = userRestController.getUser(userId);
 		assertTrue("Found values", ((User) results.getBody()).getUserAge().equals(5));
@@ -59,8 +57,7 @@ public class UserRestControllerTest implements MockListOfUsers {
 	public void testFindUserAgain() {
 
 		Integer userId = 4;
-		when(mockHttpServletRequest.getAttribute(anyString()))
-				.thenReturn("/user/".concat(Integer.toString(userId)));
+		when(mockHttpServletRequest.getAttribute(anyString())).thenReturn("/user/".concat(Integer.toString(userId)));
 		when((userService.selectUserById(userId))).thenReturn(find(userId));
 		ResponseEntity<?> results = userRestController.getUser(userId);
 		assertTrue("Found values", ((User) results.getBody()).getUserAge().equals(6));
