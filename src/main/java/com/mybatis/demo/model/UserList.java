@@ -2,7 +2,7 @@ package com.mybatis.demo.model;
 
 import java.util.List;
 
-public class UserList {
+public class UserList  {
 
 	private List<User> listOfUsers;
 

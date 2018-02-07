@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,6 +24,7 @@ import com.mybatis.demo.model.User;
 import com.mybatis.demo.model.UserList;
 import com.mybatis.demo.service.UserService;
 import com.mybatis.demo.utils.ValidateInput;
+
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -56,7 +57,9 @@ public class UserRestController {
 	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<?> getUser(@PathVariable Integer userId) {
 		LOG.info("findUser: {}", userId);
-		return new ResponseEntity<>(userService.selectUserById(userId), HttpStatus.OK);
+		User users =userService.selectUserById(userId);
+		users.add(linkTo(methodOn(UserRestController.class).getUser(userId)).withSelfRel());
+		return new ResponseEntity<>(users, HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "Find  list of users", notes = "Retrive All User Information", response = UserList.class)
@@ -77,7 +80,6 @@ public class UserRestController {
 		userService.deleteUser(userId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	// srf().disable()
 
 	@ApiOperation(value = "Add a user", httpMethod = "POST", notes = "Insert new User")
 	@RequestMapping(value = "/user", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

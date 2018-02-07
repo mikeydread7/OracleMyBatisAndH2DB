@@ -2,7 +2,13 @@ package com.mybatis.demo.model;
 
 import java.sql.Date;
 
-public class User {
+import org.springframework.hateoas.ResourceSupport;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
+public class User extends ResourceSupport{
 	private Integer userId;
 	private String userName;
 	private String eyeColor;
@@ -66,7 +72,8 @@ public class User {
 	 * @param userId
 	 *            the userId to set
 	 */
-	public void setUserId(Integer userId) {
+	@JsonCreator
+	public void setUserId(@JsonProperty("userId")Integer userId) {
 		this.userId = userId;
 	}
 
