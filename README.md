@@ -1,17 +1,19 @@
-Spring Boot Web Application
+* Spring Boot Web Application
 
 ## Using H2 and Oracle for a Spring Boot Web Application
 
 * How to use H2 and Oracle and MyBatis with a Spring Boot /Restfull Application using Spring Framework profiles. 
-
-| Descriptionm | Links |
+## Some Dependency and Links to Documentations
+_____________________________________________________
+| Description | Link | 
+| ---- | ---- | 
 | MyBatis | http://www.mybatis.org/mybatis-3/ |
 | H2 DB | http://www.h2database.com/html/main.html |
 | SpringBoot | https://projects.spring.io/spring-boot/ | 
 | Oracle | https://www.oracle.com/database/index.html | 
 
 # Modified to add  - PLEASE USE YOUR OWN ORACLE DATABSE
-==============================================================================================================
+=======================================================================
 - Update/change password in com.mybatis.demo.configuration.Credential.java or rework  to use spring properties
 
 1. Swagger  document EndPoint and api 
