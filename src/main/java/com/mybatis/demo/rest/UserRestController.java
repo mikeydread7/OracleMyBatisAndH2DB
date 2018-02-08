@@ -22,6 +22,7 @@ import com.mybatis.demo.constants.UtilContsants;
 import com.mybatis.demo.model.ModelResponse;
 import com.mybatis.demo.model.User;
 import com.mybatis.demo.model.UserList;
+import com.mybatis.demo.model.UserResourceAssembler;
 import com.mybatis.demo.service.UserService;
 import com.mybatis.demo.utils.ValidateInput;
 
@@ -68,9 +69,9 @@ public class UserRestController {
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	@RequestMapping(value = "/user", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<?> getAllUser() {
+	public ResponseEntity<?> getAllUser() {
 		LOG.info("findAllUser:");
-		return new ResponseEntity<>(userService.selectAllUsers(), HttpStatus.OK);
+		return new ResponseEntity<>(UserResourceAssembler.assembleLink(userService.selectAllUsers()), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "delete user by id", notes = "delete user by id")

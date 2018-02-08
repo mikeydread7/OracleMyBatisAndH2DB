@@ -1,7 +1,6 @@
 package com.mybatis.demo.rest;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -9,6 +8,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -16,6 +17,9 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.mybatis.demo.constants.MockListOfUsers;
 import com.mybatis.demo.model.User;
@@ -29,9 +33,24 @@ public class UserRestControllerTest implements MockListOfUsers {
 	@Mock
 	private UserService userService;
 
+	
+	
 	@InjectMocks
 	private UserRestController userRestController;
 
+	@Before
+	public void setup() {
+	    HttpServletRequest mockRequest = new MockHttpServletRequest();
+	    ServletRequestAttributes servletRequestAttributes = new ServletRequestAttributes(mockRequest);
+	    RequestContextHolder.setRequestAttributes(servletRequestAttributes);
+	}
+	
+	@After
+	public void teardown() {
+	    RequestContextHolder.resetRequestAttributes();
+	}
+
+	
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testAllUsers() {
