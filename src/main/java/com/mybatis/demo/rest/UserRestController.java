@@ -22,7 +22,7 @@ import com.mybatis.demo.constants.UtilContsants;
 import com.mybatis.demo.model.ModelResponse;
 import com.mybatis.demo.model.User;
 import com.mybatis.demo.model.UserList;
-import com.mybatis.demo.model.UserResourceAssembler;
+import com.mybatis.demo.rest.resources.UserResourceAssembler;
 import com.mybatis.demo.service.UserService;
 import com.mybatis.demo.utils.ValidateInput;
 

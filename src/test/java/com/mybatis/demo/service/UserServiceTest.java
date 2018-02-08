@@ -10,21 +10,23 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.mybatis.demo.OracleH2MemoryMyBatisApplication;
 import com.mybatis.demo.constants.MockListOfUsers;
 import com.mybatis.demo.mapper.UserMapper;
 import com.mybatis.demo.model.User;
 import com.mybatis.demo.repository.UserRepository;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 public class UserServiceTest implements MockListOfUsers {
 
 	@Mock
 	private UserMapper userMapper;
-
+    @Mock
 	private UserRepository userRepository;
-
+    @Mock
 	private UserService userService;
 
 	@BeforeClass
@@ -33,7 +35,6 @@ public class UserServiceTest implements MockListOfUsers {
 
 	@Before
 	public void setUp() throws Exception {
-
 		userRepository = new UserRepository(userMapper);
 		userService = new UserService(userRepository);
 	}
@@ -46,7 +47,6 @@ public class UserServiceTest implements MockListOfUsers {
 	public void testAll() {
 		when(userRepository.selectUserAllUsers()).thenReturn(mockEntityUserList);
 		assertTrue(userService.selectAllUsers().size() > 1);
-
 	}
 
 	@Test

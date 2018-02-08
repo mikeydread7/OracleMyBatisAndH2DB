@@ -43,24 +43,20 @@ public class UserRestIntegrationControllerPostDeleteUpdateTest implements MockLi
 	private WebApplicationContext webApplicationContext;
 	@Mock
 	private UserMapper userMapper;
-
 	@Mock
 	private UserRepository userRepository;
-
 	@Mock
 	private UserService userService;
-
+	
 	@InjectMocks
 	private UserRestController userRestController;
+	
 	private final String apiRoot = "/mybatis/v2";
 	private final ObjectMapper objectMapper = new ObjectMapper();
 	private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
 	@Before
 	public void init() {
-		MockitoAnnotations.initMocks(this);
-		userRepository = new UserRepository(userMapper);
-		userService = new UserService(userRepository);
 		when(userMapper.getAllUser()).thenReturn(mockEntityUserList);
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	}

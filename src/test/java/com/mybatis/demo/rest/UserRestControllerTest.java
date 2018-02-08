@@ -1,6 +1,7 @@
 package com.mybatis.demo.rest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -14,13 +15,16 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.mybatis.demo.OracleH2MemoryMyBatisApplication;
 import com.mybatis.demo.constants.MockListOfUsers;
 import com.mybatis.demo.model.User;
 import com.mybatis.demo.service.UserService;
@@ -33,8 +37,6 @@ public class UserRestControllerTest implements MockListOfUsers {
 	@Mock
 	private UserService userService;
 
-	
-	
 	@InjectMocks
 	private UserRestController userRestController;
 

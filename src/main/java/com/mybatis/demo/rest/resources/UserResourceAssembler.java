@@ -1,4 +1,4 @@
-package com.mybatis.demo.model;
+package com.mybatis.demo.rest.resources;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
@@ -6,6 +6,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 import java.util.List;
 import java.util.function.Consumer;
 
+import com.mybatis.demo.model.User;
 import com.mybatis.demo.rest.UserRestController;
 public class UserResourceAssembler {
 

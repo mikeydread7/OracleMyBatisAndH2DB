@@ -60,6 +60,24 @@ public class User extends ResourceSupport{
 		this.birthday = birthday;
 		this.userAge = userAge;
 	}
+	/**
+	 * @param userName
+	 * @param eyeColor
+	 * @param height
+	 * @param weight
+	 * @param birthday
+	 * @param userAge
+	 */
+	public User( String userName, String eyeColor, Integer height, Integer weight, Date birthday,
+			Integer userAge) {
+		super();
+		this.userName = userName;
+		this.eyeColor = eyeColor;
+		this.height = height;
+		this.weight = weight;
+		this.birthday = birthday;
+		this.userAge = userAge;
+	}
 
 	/**
 	 * @return the userId
