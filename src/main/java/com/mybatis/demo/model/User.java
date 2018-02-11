@@ -7,30 +7,13 @@ import org.springframework.hateoas.ResourceSupport;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
-public class User extends ResourceSupport{
+public class User extends ResourceSupport {
 	private Integer userId;
 	private String userName;
 	private String eyeColor;
 	private Integer height;
 	private Integer weight;
 	private Date birthday;
-
-	/**
-	 * @return the birthday
-	 */
-	public Date getBirthday() {
-		return birthday;
-	}
-
-	/**
-	 * @param birthday
-	 *            the birthday to set
-	 */
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
-
 	private Integer userAge;
 
 	/**
@@ -60,6 +43,7 @@ public class User extends ResourceSupport{
 		this.birthday = birthday;
 		this.userAge = userAge;
 	}
+
 	/**
 	 * @param userName
 	 * @param eyeColor
@@ -68,8 +52,7 @@ public class User extends ResourceSupport{
 	 * @param birthday
 	 * @param userAge
 	 */
-	public User( String userName, String eyeColor, Integer height, Integer weight, Date birthday,
-			Integer userAge) {
+	public User(String userName, String eyeColor, Integer height, Integer weight, Date birthday, Integer userAge) {
 		super();
 		this.userName = userName;
 		this.eyeColor = eyeColor;
@@ -80,19 +63,38 @@ public class User extends ResourceSupport{
 	}
 
 	/**
+	 * @return the birthday
+	 */
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	/**
+	 * @return the eyeColor
+	 */
+	public String getEyeColor() {
+		return eyeColor;
+	}
+
+	/**
+	 * @return the height
+	 */
+	public Integer getHeight() {
+		return height;
+	}
+
+	/**
+	 * @return the userAge
+	 */
+	public Integer getUserAge() {
+		return userAge;
+	}
+
+	/**
 	 * @return the userId
 	 */
 	public Integer getUserId() {
 		return userId;
-	}
-
-	/**
-	 * @param userId
-	 *            the userId to set
-	 */
-	@JsonCreator
-	public void setUserId(@JsonProperty("userId")Integer userId) {
-		this.userId = userId;
 	}
 
 	/**
@@ -103,18 +105,18 @@ public class User extends ResourceSupport{
 	}
 
 	/**
-	 * @param userName
-	 *            the userName to set
+	 * @return the weight
 	 */
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public Integer getWeight() {
+		return weight;
 	}
 
 	/**
-	 * @return the eyeColor
+	 * @param birthday
+	 *            the birthday to set
 	 */
-	public String getEyeColor() {
-		return eyeColor;
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 
 	/**
@@ -126,13 +128,6 @@ public class User extends ResourceSupport{
 	}
 
 	/**
-	 * @return the height
-	 */
-	public Integer getHeight() {
-		return height;
-	}
-
-	/**
 	 * @param height
 	 *            the height to set
 	 */
@@ -141,10 +136,28 @@ public class User extends ResourceSupport{
 	}
 
 	/**
-	 * @return the weight
+	 * @param userAge
+	 *            the userAge to set
 	 */
-	public Integer getWeight() {
-		return weight;
+	public void setUserAge(Integer userAge) {
+		this.userAge = userAge;
+	}
+
+	/**
+	 * @param userId
+	 *            the userId to set
+	 */
+	@JsonCreator
+	public void setUserId(@JsonProperty("userId") Integer userId) {
+		this.userId = userId;
+	}
+
+	/**
+	 * @param userName
+	 *            the userName to set
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	/**
@@ -153,21 +166,6 @@ public class User extends ResourceSupport{
 	 */
 	public void setWeight(Integer weight) {
 		this.weight = weight;
-	}
-
-	/**
-	 * @return the userAge
-	 */
-	public Integer getUserAge() {
-		return userAge;
-	}
-
-	/**
-	 * @param userAge
-	 *            the userAge to set
-	 */
-	public void setUserAge(Integer userAge) {
-		this.userAge = userAge;
 	}
 
 	@Override

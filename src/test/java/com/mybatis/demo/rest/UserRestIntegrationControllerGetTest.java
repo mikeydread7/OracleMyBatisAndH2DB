@@ -22,11 +22,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
 import com.mybatis.demo.OracleH2MemoryMyBatisApplication;
 import com.mybatis.demo.constants.MockListOfUsers;
 import com.mybatis.demo.mapper.UserMapper;
 import com.mybatis.demo.repository.UserRepository;
-import com.mybatis.demo.service.UserService;
+import com.mybatis.demo.service.UserServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = OracleH2MemoryMyBatisApplication.class)
@@ -41,17 +42,17 @@ public class UserRestIntegrationControllerGetTest implements MockListOfUsers {
 	@Mock
 	private UserRepository userRepository;
 	@Mock
-	private UserService userService;
-	
+	private UserServiceImpl userService;
+
 	@InjectMocks
 	private UserRestController userRestController;
-	
+
 	private final String apiRoot = "/mybatis/v2";
 
 	@Before
 	public void init() {
 		MockitoAnnotations.initMocks(this);
-		when(userMapper.getAllUser()).thenReturn(mockEntityUserList);
+		when(userMapper.findAllUsers()).thenReturn(mockEntityUserList);
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	}
 

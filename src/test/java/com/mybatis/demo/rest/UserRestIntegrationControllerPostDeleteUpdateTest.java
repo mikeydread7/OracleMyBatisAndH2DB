@@ -14,7 +14,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ import com.mybatis.demo.constants.MockListOfUsers;
 import com.mybatis.demo.mapper.UserMapper;
 import com.mybatis.demo.model.User;
 import com.mybatis.demo.repository.UserRepository;
-import com.mybatis.demo.service.UserService;
+import com.mybatis.demo.service.UserServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = OracleH2MemoryMyBatisApplication.class)
@@ -46,18 +45,18 @@ public class UserRestIntegrationControllerPostDeleteUpdateTest implements MockLi
 	@Mock
 	private UserRepository userRepository;
 	@Mock
-	private UserService userService;
-	
+	private UserServiceImpl userService;
+
 	@InjectMocks
 	private UserRestController userRestController;
-	
+
 	private final String apiRoot = "/mybatis/v2";
 	private final ObjectMapper objectMapper = new ObjectMapper();
 	private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
 	@Before
 	public void init() {
-		when(userMapper.getAllUser()).thenReturn(mockEntityUserList);
+		when(userMapper.findAllUsers()).thenReturn(mockEntityUserList);
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	}
 
@@ -73,9 +72,6 @@ public class UserRestIntegrationControllerPostDeleteUpdateTest implements MockLi
 		assertThat(this.userService).isNotNull();
 		mockMvc.perform(post(apiRoot.concat("/user/")).contentType(MediaType.APPLICATION_JSON).content(jsonLikeString))
 				.andExpect(status().isCreated());
-		// verify(userService, times(1)).exists(user);
-		// verifyNoMoreInteractions(userService);
-
 	}
 
 	@Test

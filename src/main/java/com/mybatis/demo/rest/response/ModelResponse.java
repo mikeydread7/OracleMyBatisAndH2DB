@@ -1,4 +1,4 @@
-package com.mybatis.demo.model;
+package com.mybatis.demo.rest.response;
 
 public class ModelResponse {
 

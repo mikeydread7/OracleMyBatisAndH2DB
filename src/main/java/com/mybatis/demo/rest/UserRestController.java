@@ -1,5 +1,8 @@
 package com.mybatis.demo.rest;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import java.io.IOException;
 
 import org.slf4j.Logger;
@@ -12,17 +15,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
+
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mybatis.demo.constants.UtilContsants;
-import com.mybatis.demo.model.ModelResponse;
 import com.mybatis.demo.model.User;
-import com.mybatis.demo.model.UserList;
-import com.mybatis.demo.rest.resources.UserResourceAssembler;
+import com.mybatis.demo.rest.hateosasembler.UserResourceAssembler;
+import com.mybatis.demo.rest.response.AbstractListOfJson;
+import com.mybatis.demo.rest.response.ModelResponse;
 import com.mybatis.demo.service.UserService;
 import com.mybatis.demo.utils.ValidateInput;
 
@@ -58,12 +61,12 @@ public class UserRestController {
 	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<?> getUser(@PathVariable Integer userId) {
 		LOG.info("findUser: {}", userId);
-		User users =userService.selectUserById(userId);
+		User users = userService.selectUserById(userId);
 		users.add(linkTo(methodOn(UserRestController.class).getUser(userId)).withSelfRel());
 		return new ResponseEntity<>(users, HttpStatus.OK);
 	}
 
-	@ApiOperation(value = "Find  list of users", notes = "Retrive All User Information", response = UserList.class)
+	@ApiOperation(value = "Find  list of users", notes = "Retrive All User Information", response = AbstractListOfJson.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved users list"),
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),

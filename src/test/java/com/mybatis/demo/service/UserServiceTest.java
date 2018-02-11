@@ -1,33 +1,35 @@
 package com.mybatis.demo.service;
 
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.sql.Date;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import com.mybatis.demo.OracleH2MemoryMyBatisApplication;
 import com.mybatis.demo.constants.MockListOfUsers;
 import com.mybatis.demo.mapper.UserMapper;
-import com.mybatis.demo.model.User;
 import com.mybatis.demo.repository.UserRepository;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-public class UserServiceTest implements MockListOfUsers {
+@RunWith(MockitoJUnitRunner.class)
+public class UserServiceTest {
 
 	@Mock
-	private UserMapper userMapper;
-    @Mock
+	private UserMapper useMapper;
+
+	@Mock
 	private UserRepository userRepository;
-    @Mock
-	private UserService userService;
+
+	@InjectMocks
+	private UserServiceImpl userService;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -35,8 +37,7 @@ public class UserServiceTest implements MockListOfUsers {
 
 	@Before
 	public void setUp() throws Exception {
-		userRepository = new UserRepository(userMapper);
-		userService = new UserService(userRepository);
+		MockitoAnnotations.initMocks(this);
 	}
 
 	@After
@@ -45,39 +46,26 @@ public class UserServiceTest implements MockListOfUsers {
 
 	@Test
 	public void testAll() {
-		when(userRepository.selectUserAllUsers()).thenReturn(mockEntityUserList);
+		when(userRepository.selectUserAllUsers()).thenReturn(MockListOfUsers.mockEntityUserList);
 		assertTrue(userService.selectAllUsers().size() > 1);
+		verify(userRepository, times(1)).selectUserAllUsers();
 	}
 
 	@Test
 	public void testById() {
 		int userId = 2;
-		when(userRepository.selectUserById(userId)).thenReturn(
-				mockEntityUserList.stream().filter(e -> e.getUserId().intValue() == userId).findFirst().orElse(null));
+		when(userRepository.selectUserById(userId)).thenReturn(MockListOfUsers.mockEntityUserList.stream()
+				.filter(e -> e.getUserId().intValue() == userId).findFirst().orElse(null));
 		assertTrue(userService.selectUserById(userId).getEyeColor().equals("brown"));
-	}
-
-	@Test
-	public void testSaveOrUpdate() {
-
-		User user = new User(1, "FOO", "brown", 3, 120, new Date(100L), 3);
-		userRepository.saveOrUpdateUser(user, 3);
-
-	}
-
-	@Test
-	public void testDelete() {
-
-		userRepository.deleteUser(1);
+		verify(userRepository, times(1)).selectUserById(userId);
 	}
 
 	@Test
 	public void testFindById() {
 		int userId = 3;
-		when(userRepository.selectUserById(userId)).thenReturn(
-				mockEntityUserList.stream().filter(e -> e.getUserId().intValue() == userId).findFirst().orElse(null));
+		when(userRepository.selectUserById(userId)).thenReturn(MockListOfUsers.mockEntityUserList.stream()
+				.filter(e -> e.getUserId().intValue() == userId).findFirst().orElse(null));
 		assertTrue(userService.selectUserById(userId).getUserName().equals("FOOBAR"));
 
 	}
-
 }

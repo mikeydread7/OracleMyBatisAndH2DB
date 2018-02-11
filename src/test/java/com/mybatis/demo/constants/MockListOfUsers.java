@@ -12,7 +12,7 @@ import com.mybatis.demo.model.User;
 public interface MockListOfUsers {
 
 	@SuppressWarnings("serial")
-	List<User> mockEntityUserList = new ArrayList<User>() {
+	final List<User> mockEntityUserList = new ArrayList<User>() {
 		{
 			add(new User(1, "FOO", "brown", 3, 120, new Date(1003L), 3));
 			add(new User(2, "BAR", "brown", 4, 150, new Date(1020L), 4));

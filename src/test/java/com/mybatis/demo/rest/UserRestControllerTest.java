@@ -15,22 +15,19 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.mybatis.demo.OracleH2MemoryMyBatisApplication;
 import com.mybatis.demo.constants.MockListOfUsers;
 import com.mybatis.demo.model.User;
 import com.mybatis.demo.service.UserService;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UserRestControllerTest implements MockListOfUsers {
+public class UserRestControllerTest {
 
 	@Mock
 	private HttpServletRequest mockHttpServletRequest;
@@ -42,22 +39,21 @@ public class UserRestControllerTest implements MockListOfUsers {
 
 	@Before
 	public void setup() {
-	    HttpServletRequest mockRequest = new MockHttpServletRequest();
-	    ServletRequestAttributes servletRequestAttributes = new ServletRequestAttributes(mockRequest);
-	    RequestContextHolder.setRequestAttributes(servletRequestAttributes);
-	}
-	
-	@After
-	public void teardown() {
-	    RequestContextHolder.resetRequestAttributes();
+		HttpServletRequest mockRequest = new MockHttpServletRequest();
+		ServletRequestAttributes servletRequestAttributes = new ServletRequestAttributes(mockRequest);
+		RequestContextHolder.setRequestAttributes(servletRequestAttributes);
 	}
 
-	
+	@After
+	public void teardown() {
+		RequestContextHolder.resetRequestAttributes();
+	}
+
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testAllUsers() {
 		when(mockHttpServletRequest.getAttribute(anyString())).thenReturn("/user");
-		when((userService.selectAllUsers())).thenReturn(mockEntityUserList);
+		when((userService.selectAllUsers())).thenReturn(MockListOfUsers.mockEntityUserList);
 		ResponseEntity<?> results = userRestController.getAllUser();
 		assertTrue("Found values", ((List<User>) results.getBody()).size() == 4);
 		assertEquals(HttpStatus.OK, results.getStatusCode());
@@ -91,7 +87,7 @@ public class UserRestControllerTest implements MockListOfUsers {
 
 		// mockEntityUserList.stream().filter(u->u.getUserId())
 
-		for (User u : mockEntityUserList) {
+		for (User u : MockListOfUsers.mockEntityUserList) {
 			if (u.getUserId().equals(UserId))
 				return u;
 		}

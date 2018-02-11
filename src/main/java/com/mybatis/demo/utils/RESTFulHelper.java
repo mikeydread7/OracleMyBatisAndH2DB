@@ -13,7 +13,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class RESTFulHelper {
 
-	
 	private final static ObjectMapper objectMapper = new ObjectMapper();
 
 	/*

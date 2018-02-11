@@ -16,10 +16,10 @@ public interface UserMapper {
 	static final String selectStr = "userId, userName, eyeColor, height, weight, birthday ,userAge";
 
 	@Select("select " + selectStr + " from USER_DB where userId=#{userId}")
-	User queryUserById(int userId);
+	User findOneUser(int userId);
 
 	@Select("select " + selectStr + " from USER_DB")
-	List<User> getAllUser();
+	List<User> findAllUsers();
 
 	@Insert("INSERT into USER_DB VALUES (user_id_seq.nextval, #{User.userName},#{User.eyeColor},"
 			+ "#{User.height},#{User.weight},#{User.birthday},#{User.userAge} )")
@@ -32,4 +32,9 @@ public interface UserMapper {
 
 	@Delete("DELETE FROM USER_DB WHERE userId=#{id}")
 	void deleteUser(@Param("id") int id);
+
+	default List<User> defaultFindAll() {
+		return findAllUsers();
+	}
+
 }

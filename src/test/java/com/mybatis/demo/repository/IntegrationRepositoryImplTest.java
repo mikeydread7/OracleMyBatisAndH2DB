@@ -16,20 +16,13 @@ import com.mybatis.demo.OracleH2MemoryMyBatisApplication;
 import com.mybatis.demo.constants.MockListOfUsers;
 import com.mybatis.demo.model.User;
 
-/*@RunWith(SpringRunner.class)
-@SpringBootTest
-@Transactional
-@ActiveProfiles("h2")*/
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = OracleH2MemoryMyBatisApplication.class)
-public class InMemoryDBTest implements MockListOfUsers {
+public class IntegrationRepositoryImplTest implements MockListOfUsers {
 
 	@Resource
 	private UserRepository userRepository;
 
-	
-	
 	@Test
 	public void testThatOurDBsequenceWorkedOnSaves() {
 		String userName = "JohnBGood";
@@ -41,14 +34,13 @@ public class InMemoryDBTest implements MockListOfUsers {
 		User userFound = userSaved.stream().filter(e -> e.getUserName().equals(userName)).findFirst().orElseGet(null);
 		assertTrue(null != userFound && userFound.getUserName().equals(userName));
 		/**
-		 * This mean we are talking to a already populated the real H2 DB
-		 * ad with a sequence  defined  our sequence is greater than 1, and we 
+		 * This mean we are talking to a already populated the real H2 DB ad
+		 * with a sequence defined our sequence is greater than 1, and we
 		 */
-		if(userSaved.size() >1){
+		if (userSaved.size() > 1) {
 			assertTrue(userFound.getUserId() > 1);
 		}
 	}
-	
 
 	@Test
 	public void testSaved() {
@@ -61,12 +53,12 @@ public class InMemoryDBTest implements MockListOfUsers {
 		User userFound = userSaved.stream().filter(e -> e.getUserName().equals(userName)).findFirst().orElseGet(null);
 		assertTrue(null != userFound && userFound.getUserName().equals(userName));
 		/**
-		 * This mean we are talking to a already populated the real H2 DB
-		 * ad with a sequence  defined  our sequence is greater than 1, and we 
+		 * This mean we are talking to a already populated the real H2 DB ad
+		 * with a sequence defined our sequence is greater than 1, and we
 		 */
-		if(userSaved.size() >1){
+		if (userSaved.size() > 1) {
 			assertTrue(userFound.getUserId() > 1);
 		}
 	}
-	
+
 }

@@ -2,45 +2,20 @@ package com.mybatis.demo.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.mybatis.demo.model.User;
-import com.mybatis.demo.repository.UserRepository;
 
-@Service
-public class UserService {
+public interface UserService {
 
-	private UserRepository userRepository;
+	User selectUserById(int userId);
 
-	public UserService(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
+	void saveUser(User user);
 
-	public User selectUserById(int userId) {
+	void deleteUser(int userId);
 
-		return userRepository.selectUserById(userId);
-	}
+	void updateUser(User user, int id);
 
-	public void saveUser(User user) {
-		userRepository.insertUser(user);
+	List<User> selectAllUsers();
 
-	}
+	Boolean exists(User user);
 
-	public void deleteUser(int userId) {
-		userRepository.deleteUser(userId);
-	}
-
-	public void updateUser(User user, int id) {
-		userRepository.saveOrUpdateUser(user, id);
-	}
-
-	public List<User> selectAllUsers() {
-
-		return userRepository.selectUserAllUsers();
-	}
-
-	public Boolean exists(User user) {
-		return (null == userRepository.selectUserById(user.getUserId()));
-
-	}
 }
