@@ -30,7 +30,7 @@ import com.mybatis.demo.constants.MockListOfUsers;
 import com.mybatis.demo.mapper.UserMapper;
 import com.mybatis.demo.model.User;
 import com.mybatis.demo.repository.UserRepository;
-import com.mybatis.demo.service.UserServiceImpl;
+import com.mybatis.demo.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = OracleH2MemoryMyBatisApplication.class)
@@ -45,12 +45,12 @@ public class UserRestIntegrationControllerPostDeleteUpdateTest implements MockLi
 	@Mock
 	private UserRepository userRepository;
 	@Mock
-	private UserServiceImpl userService;
+	private UserService userService;
 
 	@InjectMocks
 	private UserRestController userRestController;
 
-	private final String apiRoot = "/mybatis/v2";
+	private final String apiRoot = "/mybatis/mike";
 	private final ObjectMapper objectMapper = new ObjectMapper();
 	private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
@@ -70,7 +70,7 @@ public class UserRestIntegrationControllerPostDeleteUpdateTest implements MockLi
 		String jsonLikeString = objectMapper.writeValueAsString(user);
 		logger.info("{}", jsonLikeString);
 		assertThat(this.userService).isNotNull();
-		mockMvc.perform(post(apiRoot.concat("/user/")).contentType(MediaType.APPLICATION_JSON).content(jsonLikeString))
+		mockMvc.perform(post(apiRoot.concat("/user")).contentType(MediaType.APPLICATION_JSON).content(jsonLikeString))
 				.andExpect(status().isCreated());
 	}
 
@@ -81,7 +81,7 @@ public class UserRestIntegrationControllerPostDeleteUpdateTest implements MockLi
 		String jsonLikeString = objectMapper.writeValueAsString(user);
 		logger.info("{}", jsonLikeString);
 		assertThat(this.userService).isNotNull();
-		mockMvc.perform(put(apiRoot.concat("/user/".concat(userId.toString()))).contentType(MediaType.APPLICATION_JSON)
+		mockMvc.perform(put(apiRoot.concat("/user/id/".concat(userId.toString()))).contentType(MediaType.APPLICATION_JSON)
 				.content(jsonLikeString)).andExpect(status().isAccepted());
 	}
 

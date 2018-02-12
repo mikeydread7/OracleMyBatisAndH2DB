@@ -8,7 +8,9 @@ package com.mybatis.demo.constants;
  *
  */
 public interface UtilContsants {
-	static String INVALID_USER_ID = "Unknown User ID";
-	static String INVALID_USER_OBJ = "Unknown User Object or bad JSON Object ";
-	static int FAILED = -1;
+	final static String INVALID_USER_ID = "Unknown User ID";
+	final static String INVALID_USER_OBJ = "Unknown User Object or bad JSON Object ";
+	final static int FAILED = 400;
+	
+	final static String API_VERSION ="; version=1";
 }

@@ -14,7 +14,7 @@ public class UserResourceAssembler {
 
 		jsonPayLoad.stream().forEach(e -> e.add(linkTo(methodOn(UserRestController.class).getAllUser()).withSelfRel()));
 		jsonPayLoad.stream().forEach(e -> e.add(
-				linkTo(methodOn(UserRestController.class).getAllUser()).slash(e.getUserId()).withRel(e.getUserName())));
+				linkTo(methodOn(UserRestController.class).getAllUser()).slash(e.getUserId()).withRel("id")));
 		return jsonPayLoad;
 	}
 

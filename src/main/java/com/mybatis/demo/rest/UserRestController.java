@@ -2,7 +2,7 @@ package com.mybatis.demo.rest;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
-
+import static  com.mybatis.demo.constants.UtilContsants.*;
 import java.io.IOException;
 
 import org.slf4j.Logger;
@@ -34,7 +34,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("/mybatis/v2")
+@RequestMapping("/mybatis/mike")
 public class UserRestController {
 
 	// *************************************************************************************************
@@ -58,7 +58,7 @@ public class UserRestController {
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/user/id/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + API_VERSION)
 	ResponseEntity<?> getUser(@PathVariable Integer userId) {
 		LOG.info("findUser: {}", userId);
 		User users = userService.selectUserById(userId);
@@ -71,14 +71,14 @@ public class UserRestController {
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-	@RequestMapping(value = "/user", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/user", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + API_VERSION)
 	public ResponseEntity<?> getAllUser() {
 		LOG.info("findAllUser:");
 		return new ResponseEntity<>(UserResourceAssembler.assembleLink(userService.selectAllUsers()), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "delete user by id", notes = "delete user by id")
-	@RequestMapping(value = "/user/{userId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/user/id/{userId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE + API_VERSION)
 	ResponseEntity<?> deleteUser(@PathVariable Integer userId) {
 		LOG.info("deletUser: {}", userId);
 		userService.deleteUser(userId);
@@ -86,7 +86,7 @@ public class UserRestController {
 	}
 
 	@ApiOperation(value = "Add a user", httpMethod = "POST", notes = "Insert new User")
-	@RequestMapping(value = "/user", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/user", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE + API_VERSION)
 	ResponseEntity<?> insertNewUser(@RequestBody User user)
 			throws JsonParseException, JsonMappingException, IOException {
 
@@ -103,7 +103,7 @@ public class UserRestController {
 	}
 
 	@ApiOperation(value = "update a users info", httpMethod = "PUT", notes = "Update User")
-	@RequestMapping(value = "/user/{userId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/user/{userId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE + API_VERSION)
 	ResponseEntity<?> saveOrUpdateUser(@RequestBody User user, @PathVariable("userId") Integer userId)
 			throws JsonParseException, JsonMappingException, IOException {
 

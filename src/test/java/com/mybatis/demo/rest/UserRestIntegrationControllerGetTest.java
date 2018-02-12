@@ -27,7 +27,7 @@ import com.mybatis.demo.OracleH2MemoryMyBatisApplication;
 import com.mybatis.demo.constants.MockListOfUsers;
 import com.mybatis.demo.mapper.UserMapper;
 import com.mybatis.demo.repository.UserRepository;
-import com.mybatis.demo.service.UserServiceImpl;
+import com.mybatis.demo.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = OracleH2MemoryMyBatisApplication.class)
@@ -42,12 +42,12 @@ public class UserRestIntegrationControllerGetTest implements MockListOfUsers {
 	@Mock
 	private UserRepository userRepository;
 	@Mock
-	private UserServiceImpl userService;
+	private UserService userService;
 
 	@InjectMocks
 	private UserRestController userRestController;
 
-	private final String apiRoot = "/mybatis/v2";
+	private final String apiRoot = "/mybatis/mike";
 
 	@Before
 	public void init() {
@@ -73,7 +73,7 @@ public class UserRestIntegrationControllerGetTest implements MockListOfUsers {
 		Integer userId = 2;
 
 		assertThat(this.userService).isNotNull();
-		mockMvc.perform(get(apiRoot.concat("/user/").concat(userId.toString())).accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get(apiRoot.concat("/user/id/").concat(userId.toString())).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andExpect(jsonPath("$.userId", is((userId))))
 				.andExpect(jsonPath("$.userName", is("Steffan"))).andExpect(jsonPath("$.eyeColor", is("brown")))
 				.andExpect(jsonPath("$.weight", is(89))).andDo(print());
