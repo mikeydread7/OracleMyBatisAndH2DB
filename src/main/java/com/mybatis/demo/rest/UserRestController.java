@@ -23,7 +23,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mybatis.demo.constants.UtilContsants;
 import com.mybatis.demo.model.User;
-import com.mybatis.demo.rest.hateosasembler.UserResourceAssembler;
+import com.mybatis.demo.rest.hateosassembler.UserResourceAssembler;
 import com.mybatis.demo.rest.response.AbstractListOfJson;
 import com.mybatis.demo.rest.response.ModelResponse;
 import com.mybatis.demo.service.UserService;

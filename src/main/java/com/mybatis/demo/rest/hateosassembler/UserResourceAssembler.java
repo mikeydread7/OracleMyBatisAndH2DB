@@ -1,4 +1,4 @@
-package com.mybatis.demo.rest.hateosasembler;
+package com.mybatis.demo.rest.hateosassembler;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
