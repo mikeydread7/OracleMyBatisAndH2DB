@@ -83,14 +83,12 @@ public class UserRestControllerTest {
 
 	// *************************************************************************************************
 	// Utility
-	private User find(Integer UserId) {
 
-		// mockEntityUserList.stream().filter(u->u.getUserId())
+	private User find(Integer userId) {
 
-		for (User u : MockListOfUsers.mockEntityUserList) {
-			if (u.getUserId().equals(UserId))
-				return u;
+			return MockListOfUsers.mockEntityUserList.stream()
+					.filter(u->u.getUserId()== userId)
+					.findFirst()
+					.orElse(new User());
 		}
-		return new User();
-	}
 }
